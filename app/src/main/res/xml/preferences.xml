@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/data_selection">
+        <EditTextPreference
+            android:key="user_text"
+            android:title="@string/user_name"
+            android:summary="Save user text"
+            android:defaultValue="No name">
+
+        </EditTextPreference>
+
+
+        <EditTextPreference
+            android:key="pass_text"
+            android:title="@string/pass_login"
+            android:summary="Guarda contraseña"
+            android:defaultValue="*******">
+
+        </EditTextPreference>
+
+        <CheckBoxPreference
+            android:key="check_user"
+            android:title="@string/save_user"/>
+        <CheckBoxPreference
+            android:key="check_pass"
+            android:title="@string/save_pass"/>
+
+
+        <ListPreference
+            android:key="language_list"
+            android:title="@string/language_selection"
+            android:entries="@array/languages"
+            android:entryValues="@array/languages_entries"
+            android:defaultValue="1"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

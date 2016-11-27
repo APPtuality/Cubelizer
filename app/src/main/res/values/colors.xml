@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorNaranja">#F0A202</color>
+
+    <color name="logoOscuro">#3A3A48</color>
+    <color name="logoClaro">#C2C2CE</color>
+    <color name="fondoOscuro">#24242C</color>
+    <color name="fondoClaro">#E3E3E9</color>
+    <color name="fondoOscuroTrans">#7824242c</color>
+
+    <color name="negro_semitransparente">#B2000000</color>
+
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="primary">#E43F3F</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>

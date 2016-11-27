@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Cubelizer</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+
+
+    <!--Enrique-->
+    <string name="user_name">User</string>
+    <string name="pass_login">Password</string>
+    <string name="button_login">Login</string>
+
+    <string name="data_selection">User data</string>
+    <string name="language_selection">Language selection</string>
+
+    <string name="save_pass">Save Password</string>
+    <string name="save_user">Save User</string>
+
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Español</item>
+    </string-array>
+
+    <string-array name="languages_entries">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
