@@ -70,22 +70,22 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/talentum/cubelizer/cubelizer/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-718">
-              <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
+            <state relative-caret-position="472">
+              <caret line="142" column="8" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3102#3133#0" expanded="true" />
                 <element signature="e#3135#3167#0" expanded="true" />
                 <element signature="e#4606#5190#0" expanded="true" />
                 <element signature="e#5189#5190#0" expanded="true" />
-                <element signature="e#5294#5441#0" expanded="true" />
-                <element signature="e#5440#5441#0" expanded="true" />
-                <element signature="e#5548#5698#0" expanded="true" />
-                <element signature="e#5697#5698#0" expanded="true" />
-                <element signature="e#5800#5947#0" expanded="true" />
-                <element signature="e#5946#5947#0" expanded="true" />
-                <element signature="e#6452#6743#0" expanded="true" />
-                <element signature="e#6742#6743#0" expanded="true" />
+                <element signature="e#5303#5450#0" expanded="true" />
+                <element signature="e#5449#5450#0" expanded="true" />
+                <element signature="e#5557#5707#0" expanded="true" />
+                <element signature="e#5706#5707#0" expanded="true" />
+                <element signature="e#5809#5956#0" expanded="true" />
+                <element signature="e#5955#5956#0" expanded="true" />
+                <element signature="e#6461#6752#0" expanded="true" />
+                <element signature="e#6751#6752#0" expanded="true" />
                 <element signature="method#expandFAB#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#hideFAB#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onWindowFocusChanged#0;class#MainActivity#0" expanded="false" />
@@ -2482,7 +2482,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2687,22 +2687,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/app/talentum/cubelizer/cubelizer/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-718">
-          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
+        <state relative-caret-position="472">
+          <caret line="142" column="8" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3102#3133#0" expanded="true" />
             <element signature="e#3135#3167#0" expanded="true" />
             <element signature="e#4606#5190#0" expanded="true" />
             <element signature="e#5189#5190#0" expanded="true" />
-            <element signature="e#5294#5441#0" expanded="true" />
-            <element signature="e#5440#5441#0" expanded="true" />
-            <element signature="e#5548#5698#0" expanded="true" />
-            <element signature="e#5697#5698#0" expanded="true" />
-            <element signature="e#5800#5947#0" expanded="true" />
-            <element signature="e#5946#5947#0" expanded="true" />
-            <element signature="e#6452#6743#0" expanded="true" />
-            <element signature="e#6742#6743#0" expanded="true" />
+            <element signature="e#5303#5450#0" expanded="true" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5557#5707#0" expanded="true" />
+            <element signature="e#5706#5707#0" expanded="true" />
+            <element signature="e#5809#5956#0" expanded="true" />
+            <element signature="e#5955#5956#0" expanded="true" />
+            <element signature="e#6461#6752#0" expanded="true" />
+            <element signature="e#6751#6752#0" expanded="true" />
             <element signature="method#expandFAB#0;class#MainActivity#0" expanded="false" />
             <element signature="method#hideFAB#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onWindowFocusChanged#0;class#MainActivity#0" expanded="false" />
