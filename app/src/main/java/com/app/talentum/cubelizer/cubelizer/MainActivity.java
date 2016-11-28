@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Barra de Navegación
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         //Recogemos los datos del LoginActivity
         Bundle extras = getIntent().getExtras();
@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void floatingButton(){
+
+
         //Enlazamos las animaciones de los botones flotantes
         show_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_show);
         hide_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_hide);
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         hide_fab_3 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab3_hide);
 
         //Unimos los botones flotantes con sus ids
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab1 = (FloatingActionButton) findViewById(R.id.fab_1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab_2);
         fab3 = (FloatingActionButton) findViewById(R.id.fab_3);
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                mostrarPlano();
                 if (FAB_Status == false) {
                     //Display FAB menu
                     expandFAB();
@@ -339,19 +341,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        /**
-         * Boton de settings del main
-         */
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(this, Preferencias.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     @Override
     public void onBackPressed() {
