@@ -32,7 +32,7 @@
             android:layout_width="54sp"
             android:layout_height="60sp"
             android:onClick="onClick"
-            android:background="@drawable/menu" />
+            android:background="@drawable/ic_calendar_orange" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
