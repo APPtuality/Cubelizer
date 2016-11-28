@@ -182,6 +182,7 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
                     Log.i("LoginActivity","Login Correcto");
                     marcador = 1;
                     enviarData(usuario);
+                    finish();
                 }
                 if(status.equalsIgnoreCase("Error")){
                     Log.i("LoginActivity","Login InCorrecto");
@@ -194,11 +195,11 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
     }
     private void enviarData (Object object){
         if(marcador == 1){
-            String uSer = usuario.getUsuario();
-            String pAss = usuario.getPassword();
+            String sUser = usuario.getUsuario().toString();
+            String pAss = usuario.getPassword().toString();
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("user", uSer);
-            intent.putExtra("password", pAss);
+            intent.putExtra("user", sUser);
+            intent.putExtra("password",pAss );
             startActivity(intent);
         }
     }
@@ -215,8 +216,6 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
      */
     public void login() {
         Log.d(TAG, "Login");
-
-
 
 
         if (!validate()) {
