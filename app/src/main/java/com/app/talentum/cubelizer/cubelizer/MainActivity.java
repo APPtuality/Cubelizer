@@ -33,6 +33,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Display display;
     private Point size;
     float scale =1f;
+    Usuario usuario;
     //ScaleGestureDetector SGD;
     PinchZoomImageView mPinchZoomImageView;
 
@@ -72,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        usuario = new Usuario();
+        usuario = (Usuario)getIntent().getExtras().getSerializable("user");
+        usuario = (Usuario)getIntent().getExtras().getSerializable("password");
 
         tvDimensiones = (TextView) findViewById(R.id.tvDimensiones);
         ivImagen = (ImageView) findViewById(R.id.ivImagen);

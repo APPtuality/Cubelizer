@@ -8,12 +8,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class FAB_Hide_on_Scroll extends FloatingActionButton.Behavior {
-
-
     public FAB_Hide_on_Scroll(Context context, AttributeSet attrs) {
         super();
     }
-
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {

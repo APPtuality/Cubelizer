@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_d0053112abe38ca766d5b74e7e5c6b1c79e88a93\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -21,6 +30,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_f66ca80461aa31577eaee2683404feda52b928b6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -30,11 +48,20 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_47e990866767dd6597f3c600f9b97ffd3d8f9e0d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="136aede0230186b0fd5dd516a97b7a952bcb6247">
+        sha1="6369e93240ca74227d3bf69657b7b9e2ef053b08">
         <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5f4127844d39567cbea1bc023b0a25dd361382a0\classes.dex" />
     </item>
     <item
@@ -45,6 +72,24 @@
         revision="25.0.0"
         sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
         <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_acd824925f7d6c4550eab3b79abf80af245ba6e8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_e16eb90d6f748f7b144225eace417659d2128dff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_b0e968dfe45109a0fbb48cd6ee937c4a89756825\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -63,6 +108,15 @@
         revision="25.0.0"
         sha1="f40cf334cdc8b098b74312e21c7741c6eefbeb0e">
         <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.getbase-floatingactionbutton-1.10.1_906dc0e739828012b292b93856f0426154f10765\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_79058ab14ece40416d465e01fa6ef49c7d0f4bac\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,12 +147,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_178689ae44ec4b7d1ca4b6d97d809d75a94a0047\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_40774a3e801d1ab095f38eaf86b2e07d966f0242\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3f9961568e4c96485a27098f1e2d0661723e08b5">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_879493f35cbe0e76a8824079e2e7f9e85a5734b8\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -111,102 +183,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Daboom\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-beta4\constraint-layout-solver-1.0.0-beta4.jar"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\libs\httpcore-4.2.3.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="0a9cb567dc008f570c28531720168f19148da965">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-beta4_71896e93791b50b1b6972b32a93eb6e7f7a0c2cf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-6.1.0_84b8df172dfc1be19a5400577a49465ec0c42553\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_cf8d6ba904edd33a9c3679811b6eda757c688c0c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_d0053112abe38ca766d5b74e7e5c6b1c79e88a93\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_f66ca80461aa31577eaee2683404feda52b928b6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_47e990866767dd6597f3c600f9b97ffd3d8f9e0d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_e16eb90d6f748f7b144225eace417659d2128dff\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_b0e968dfe45109a0fbb48cd6ee937c4a89756825\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_79058ab14ece40416d465e01fa6ef49c7d0f4bac\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_178689ae44ec4b7d1ca4b6d97d809d75a94a0047\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f1fec068a3cc22c98d66c70d6d30c09ac7a18e23">
-        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_879493f35cbe0e76a8824079e2e7f9e85a5734b8\classes.dex" />
+        sha1="5e92ec56abe188b865642a14e1a037c1253fc42e">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpcore-4.2.3_93b5227c2380f5dae949f50270e6a21da3226f44\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -228,12 +210,57 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Daboom\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-beta4\constraint-layout-solver-1.0.0-beta4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0a9cb567dc008f570c28531720168f19148da965">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-beta4_71896e93791b50b1b6972b32a93eb6e7f7a0c2cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\libs\apache-httpcomponents-httpclient.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="13d1b1d8f318f5b0f95bc2901f378ef68982584f">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\2\apache-httpcomponents-httpclient_8eeeb6f76d7e884e68a8538ebe5b77f8a5221caf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
         <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_b951f5cd78d2f97d1aee26330c738a890f31d0fa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-6.1.0_84b8df172dfc1be19a5400577a49465ec0c42553\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_cf8d6ba904edd33a9c3679811b6eda757c688c0c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Daboom\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3\5fc52c41ef0239d1093a1eb7c3697036183677ce\gson-2.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="C:\Users\Daboom\Documents\Vero\Proyecto\Repositorio\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3_80457f4537404f62b7a8bf2b811e44738de67d45\classes.dex" />
     </item>
     <item
         is-multidex="true"
