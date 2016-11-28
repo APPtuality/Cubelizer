@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".Preferencias" />
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".calendario.CalendarActivity" />
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
