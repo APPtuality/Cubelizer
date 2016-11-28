@@ -67,7 +67,7 @@ public class CalendarActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
-        setContentView(R.layout.grid_day_calendar);
+        
         context = this;
 
         //btnSelectedDay = (Button)findViewById(R.id.btnSelectedDay);
