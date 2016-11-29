@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.app.talentum.cubelizer.cubelizer.calendar.Calendar
+        android:id="@+id/listener_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarSize="4dp"
+        app:daysContainerBackgroundColor="@color/fondoOscuro"
+        app:dayTextColor="#eeeeee"
+        app:selectedDayTextColor="#444444"
+        app:selectedDayBackgroundColor="#FFAA4D"
+        app:displayDayOfWeek="true"
+        app:alwaysDisplayMonth="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

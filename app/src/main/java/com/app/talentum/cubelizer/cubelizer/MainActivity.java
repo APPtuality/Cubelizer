@@ -32,6 +32,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
 
 import java.util.ArrayList;
@@ -79,6 +80,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Calendar calendar = (Calendar) findViewById(R.id.listener_calendar);
+        calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
+            @Override
+            public void onDaySelected(int day) {
+                View parentLayout = findViewById(android.R.id.content);
+                Snackbar.make(parentLayout, "Seleted Day: " + day, Snackbar.LENGTH_SHORT).show();
+            }
+        });
         //Barra de Navegación
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);

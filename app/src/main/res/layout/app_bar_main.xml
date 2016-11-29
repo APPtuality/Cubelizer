@@ -24,6 +24,7 @@ tools:context="com.app.talentum.cubelizer.cubelizer.MainActivity">
 
 <include layout="@layout/content_main" />
 
+
 <android.support.design.widget.FloatingActionButton
     android:id="@+id/fab"
     android:layout_width="wrap_content"
@@ -34,52 +35,9 @@ tools:context="com.app.talentum.cubelizer.cubelizer.MainActivity">
     app:layout_behavior=".Scrolling_Floating_Action_Button.FAB_Float_on_Scroll"/>
 
 
-
+    <include layout="@layout/app_calendar" />
 <include layout="@layout/fab_layout" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnCalendar"
-            android:layout_width="54sp"
-            android:layout_height="60sp"
-            android:onClick="onClick"
-            android:background="@drawable/menu" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/seatLegendLayout">
-
-            <FrameLayout
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/linearLayout_gridtableLayout"
-                    android:layout_width="3500dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <GridView
-                        android:id="@+id/gridViewCalendar"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:columnWidth="100dp"
-                        android:gravity="left"
-                        android:numColumns="45"
-                        android:scrollbarAlwaysDrawHorizontalTrack="true"
-                        android:scrollbarAlwaysDrawVerticalTrack="true"
-                        android:scrollbars="horizontal"
-                        android:stretchMode="none">
-                    </GridView>
-                </LinearLayout>
-            </FrameLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
