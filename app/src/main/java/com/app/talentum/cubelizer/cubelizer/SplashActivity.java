@@ -1,8 +1,10 @@
 package com.app.talentum.cubelizer.cubelizer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.app.talentum.cubelizer.cubelizer.persistencia.UserSessionManager;
 
@@ -14,8 +16,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);/*
-        Context context= this;
+        /*Context context= this;
         String user = PreferenciasFragment.getString(context,"KEY_USER_ED");
         String pass = PreferenciasFragment.getKeyPassEd();
         Log.i(user,"Dato guardo en preferencias");
