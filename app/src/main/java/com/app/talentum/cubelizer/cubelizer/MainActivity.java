@@ -88,9 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Snackbar.make(parentLayout, "Seleted Day: " + day, Snackbar.LENGTH_SHORT).show();
             }
         });
-        //Barra de Navegación
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+
 
         //Recogemos los datos del LoginActivity
         Bundle extras = getIntent().getExtras();
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         zoom();
         //Menú hamburguesa
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -136,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrarPlano();
+
                 if (FAB_Status == false) {
                     //Display FAB menu
                     expandFAB();

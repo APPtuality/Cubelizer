@@ -21,8 +21,8 @@
                 />
             <item
                 android:id="@+id/nav_calor"
-                android:icon="@drawable/ic_thermometer_oraneg"
-                android:title="Plan + Temperature" />
+                android:icon="@drawable/ic_walk_orange"
+                android:title="Plan + People" />
             <item
                 android:id="@+id/nav_todo"
                 android:icon="@drawable/ic_filled_orange"
