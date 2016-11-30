@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
+import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
+import com.app.talentum.cubelizer.cubelizer.persistencia.UserSessionManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -40,7 +42,9 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
@@ -60,28 +64,29 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
     Usuario usuario;
     int marcador;
     HttpGetWithEntity httpGetWithEntity;
+    JsonRespon jsonRespon;
+    UserSessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        Escondemos la barra superior de navegación para mostrar la pantalla de Login
-         */
+        context = this;
+
+        //Escondemos la barra superior de navegación para mostrar la pantalla de Login
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
-        /*
-        Llamamos a la activity que tiene estructurado el Login
-         */
+
+        //Llamamos a la activity que tiene estructurado el Login
         setContentView(R.layout.activity_login);
-        /*
-        Declaración de los elementos del Activity Login
-         */
+        session = new UserSessionManager(getApplicationContext());
+
+        //Declaración de los elementos del Activity Login
         userText = (EditText)findViewById(R.id.input_user);
         passwordText = (EditText)findViewById(R.id.input_password);
         loginButton = (Button)findViewById(R.id.btn_login);
-        /*
-        Le damos funcionalidad al Botón de Login
-         */
+        Toast.makeText(getApplicationContext(),"USer Login status" + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
+
+        //Le damos funcionalidad al Botón de Login
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,16 +129,13 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
         }
         @Override
         protected Void doInBackground(String... params) {
-            BufferedReader reader = null;
+            Reader reader = null;
+            Gson gson = new Gson();
             try {
                 client = new DefaultHttpClient();
                 httpGetWithEntity = new HttpGetWithEntity(SERVER_URL);
-                usuario = new Usuario();
-                usuario.setUsuario(user);
-                usuario.setPassword(pass);
-                /*
-                Creamos el objeto Json
-                 */
+
+                //Creamos el objeto Json
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("user", user);
                 jsonObject.put("password", pass);
@@ -145,15 +147,13 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
                 HttpResponse response = client.execute(httpGetWithEntity);
                 Log.d("LoginActivity",String.valueOf(response.getStatusLine().getStatusCode()));
 
-                reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                StringBuffer sb = new StringBuffer();
-                String line = null;
-                // Leemos la respuesta del servidor
-                while((line = reader.readLine()) != null){
-                    // Añadimos la respuesta a un StringBuffer
-                    sb.append(line + " ");
+                if(response!=null){
+                    InputStream ips = response.getEntity().getContent();
+                    reader = new InputStreamReader(ips);
+                    jsonRespon = gson.fromJson(reader, JsonRespon.class);
+                    Log.e("RESPUESTA", jsonRespon.toString());
+
                 }
-                respuesta = sb.toString();
 
             }catch (JSONException e) {
                 e.printStackTrace();
@@ -173,35 +173,37 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
         protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
 
-            if(respuesta != null){
-                Gson gson = new Gson();
-                String status = gson.fromJson("ok",String.class) ;
-                String message = gson.fromJson("",String.class);
-                String result = gson.fromJson("",String.class);
-                if(status.equalsIgnoreCase("ok")){
-                    Log.i("LoginActivity","Login Correcto");
-                    marcador = 1;
-                    enviarData(usuario);
-                    finish();
-                }
-                if(status.equalsIgnoreCase("Error")){
-                    Log.i("LoginActivity","Login InCorrecto");
-                }else{
-                    Log.i("LoginActivity","Error ene l login");
-                }
-                Log.i("MainActivity",respuesta);
+            if(jsonRespon.getStatus().equals("ok")){
+                Log.i("LoginActivity","Login Correcto");
+                saveUser(user, pass);
+
+            } else{
+                String mens = jsonRespon.getMessage();
+                Toast.makeText(getApplicationContext(),mens,Toast.LENGTH_SHORT).show();
+                Log.i("LoginActivity","Error en el login");
             }
+            Log.i("MainActivity",jsonRespon.toString());
         }
     }
-    private void enviarData (Object object){
-        if(marcador == 1){
-            String sUser = usuario.getUsuario().toString();
-            String pAss = usuario.getPassword().toString();
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("user", sUser);
-            intent.putExtra("password",pAss );
-            startActivity(intent);
-        }
+    private void saveUser(String us, String pass){
+        session.createUserLoginSession(us);
+        //PreferenciasFragment.setString(context,PreferenciasFragment.getKeyUserEd(),us);
+        //PreferenciasFragment.setString(context,PreferenciasFragment.getKeyUserEd(),pass);
+        //PreferenciasFragment.showUserSettings(context);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+        /*Usuario newUs = new Usuario();
+        newUs.setUsuario(us);
+        newUs.setPassword(pass);
+        Log.i("MainActivity",newUs.toString());
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("user", us);
+        intent.putExtra("password",pass);
+        startActivity(intent);*/
     }
     /*
     private String prettyfyJSON(String json){

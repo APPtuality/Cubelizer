@@ -7,7 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -35,7 +37,10 @@ import android.widget.TextView;
 import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -365,7 +370,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_settings) {
+        if(id == R.id.nav_login){
+            startActivity(new Intent(this, LogoutActivity.class));
+        }else if (id == R.id.nav_settings) {
             startActivity(new Intent(this, Preferencias.class));
 
         } else if (id == R.id.nav_plano) {
@@ -378,9 +385,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             planoActividad();
         } else if (id == R.id.nav_todo) {
             mostrarTodo();
-        }
+        }else if (id == R.id.nav_share) {
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "<h1>Hola</h1>");
+        startActivity(Intent.createChooser(intent, "Share with"));
+
+    }
+
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -458,5 +472,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ivImagen.setImageBitmap(bMap);
         mPinchZoomImageView.setImageBitmap(bMap);
     }
+    /*
+   TRATAMIENTO DE CAPTURAS DE PANTALLA
+    */
+    private void takeScreenshot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            openScreenshot(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or OOM
+            e.printStackTrace();
+        }
+    }
+    private void openScreenshot(File imageFile) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        Uri uri = Uri.fromFile(imageFile);
+        intent.setDataAndType(uri, "image/*");
+        startActivity(intent);
+    }
+
 
 }

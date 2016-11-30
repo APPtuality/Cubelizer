@@ -12,8 +12,6 @@
     <string name="action_settings">Settings</string>
 
 
-
-
     <!--Enrique-->
     <string name="user_name">User</string>
     <string name="pass_login">Password</string>
@@ -24,6 +22,16 @@
 
     <string name="save_pass">Save Password</string>
     <string name="save_user">Save User</string>
+
+    <string name="nombre_usuario">User name:</string>
+
+    <string name="Background">Background</string>
+    <string name="Activity">Activity</string>
+    <string name="Flow">Flow</string>
+    <string name="All">All layers</string>
+    <string name="Calendar">Calendar</string>
+    <string name="Settings">Settings</string>
+    <string name="UserAcount">User Acount</string>
 
 
     <string-array name="languages">

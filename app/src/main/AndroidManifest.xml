@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.talentum.cubelizer.cubelizer">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,28 +14,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-<!--Declaración de los Activitys de la aplicación-->
+        <!-- Declaración de los Activitys de la aplicación -->
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark.Dialog">
-        </activity>
+            android:theme="@style/AppTheme.Dark.Dialog"></activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Preferencias">
         </activity>
-        <activity android:name=".Preferencias" />
-        <activity android:name=".calendario.CalendarActivity" />
+
+        <activity
+            android:name=".LogoutActivity"
+            android:theme="@style/AppTheme.Dark.Dialog">
+        </activity>
     </application>
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

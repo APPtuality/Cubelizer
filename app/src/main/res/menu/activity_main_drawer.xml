@@ -2,35 +2,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
+    <item android:title="Configuration">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_setting_orange"
+                android:title="@string/UserAcount"/>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_setting_orange"
+                android:title="@string/Settings"/>
+        </menu>
+    </item>
     <item android:title="Activity">
 
         <menu>
             <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_setting_orange"
-                android:title="Settings"/>
-            <item
                 android:id="@+id/nav_plano"
                 android:icon="@drawable/ic_floor_orange"
-                android:title="Background" />
+                android:title="@string/Background" /> />
             <item
                 android:id="@+id/nav_foto"
                 android:icon="@drawable/ic_walk_orange"
-                android:title="Activity"
+                android:title="@string/Activity"
                 />
             <item
                 android:id="@+id/nav_calor"
                 android:icon="@drawable/ic_arrows_orange"
-                android:title="Flow" />
+                android:title="@string/Flow" />
             <item
                 android:id="@+id/nav_todo"
                 android:icon="@drawable/ic_filled_orange"
-                android:title="All layers" />
+                android:title="@string/All" />
             <item
                 android:id="@+id/nav_calendar"
                 android:icon="@drawable/ic_calendar_orange"
-                android:title="Calendar" />
+                android:title="@string/Calendar" />
         </menu>
     </item>
 
@@ -39,13 +46,9 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
+                android:showAsAction="ifRoom"
                 android:title="Share"
                 android:actionProviderClass="android.widget.ShareActionProvider"/>
-
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
         </menu>
     </item>
 
