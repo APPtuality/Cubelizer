@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planoImagen();
+                planoActividad();
             }
         });
 
@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mostrarPlano();
 
         } else if (id == R.id.nav_foto) {
-            planoImagen();
+            planoActividad();
 
         } else if (id == R.id.nav_calor) {
             planoActividad();

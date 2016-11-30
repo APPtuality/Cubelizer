@@ -3,15 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fe632c5c0a20e6d774a5c13c51103bef22e8cd94">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_a230e8e819df89b985a948e42cc35a5ea29db454\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
@@ -21,30 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\net.danlew\android.joda\2.9.5\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_2267dcac5b9b12a46950b3c656b71873f2ed7c3e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ba144dbd5564759a17abe1aa0ab5daf40f735251">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_fc1c6eb501025fb7642602a2c2aeaae764228736\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_c65ddd9278da74cfef0bb2773e17d6337b5ac986\classes.dex" />
+        sha1="6c877b2c372dd26a46a0fe1c0fe07f186fb2ac26">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\net.danlew-android.joda-2.9.5_0e7e195b3655a91ffa02968d7312d51551534d03\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -57,21 +30,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_2edacf10fcf1e308d2154c1ac50affaa84512eb2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_a4b5badf4f52d9257ea339e69a3b63af7513fd72\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_a72c43ee09feeaccdf39dcab9ce1fb8fd93b3907\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,24 +66,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_b56a6e27eb23c9916682b552fcfdf199e79f5938\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="83b9d1fd6dd3791184d6b60d3a130a993e2987e3">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.1.0_87538327ea85f7213e70f69270659ebf7e12a76f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -120,21 +75,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_0b9115f00c81cadee2591df182030be378dc8fc5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="867dad63c33388ff8c7644b236579355036d075f">
         <dex dex="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_5083a17f306cf9bf03ceff6d1dea48f4d0f42ff0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_7a64ec1c3233d9cd01aa750d0bf58175dace3a9c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -174,12 +129,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_1d7522c510e572db27e0a5b31c9d5cac300db6b8\classes.dex" />
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_94e49440d90c702e546f0ffa4ec13459aa2d0e47\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -192,6 +147,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_b6eae39d7da0ce387f2950fd6a117a7f369bc4ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -201,21 +165,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_d354acdbb90786fcac70092fbea557fb262b59fd\classes.dex" />
+        sha1="83b9d1fd6dd3791184d6b60d3a130a993e2987e3">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.1.0_476ccada628be1dfd77e530f055fc91fa7dc9ba3\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_2c672bdc631b64361cde7380a803d34baed58017\classes.dex" />
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_46be962bed3c4e3073710cfb91644e9622cfacec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.4.0_2a6434501cdde0437e083f7945792fd128436acf\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -225,15 +198,6 @@
         revision="25.0.0"
         sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
         <dex dex="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_269129290fba79143e237c0d14aa73c775ad0fb8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_7fb2afc10035e2639656f34d8420c6068c9992b4\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -264,24 +228,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\net.danlew\android.joda\2.9.5\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6c877b2c372dd26a46a0fe1c0fe07f186fb2ac26">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\net.danlew-android.joda-2.9.5_bc879181c87de1a4aadc50965ac66d336483a2f4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.4.0_61f26cf68d1b189cb8b71034f497b08e785cb865\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -291,12 +237,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.getbase\floatingactionbutton\1.10.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_9c217f0b146a2e50265f44c837f7cd9bb0334b52\classes.dex" />
+        sha1="f40cf334cdc8b098b74312e21c7741c6eefbeb0e">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.getbase-floatingactionbutton-1.10.1_d9af464fc828875963ffbb68736cfdd2b9d0e44a\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -309,66 +255,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_ee89a7ceb410bb4c4fe886ca6c35da4a03822b10\classes.dex" />
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_41f373fd11652fd3db6caee9c90157dcb41d877a\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-beta4\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_ef06559bfc9ba21a9ff1647bf2334ea18f4f6a0a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-beta4\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="662d7533b25a666c649c10a16b42edfb95f25a4f">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-beta4_3ebdaf210e898c5e5fcf47ccf3ccf67b7f0e0a1b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_5f7b157d289d49edfb8b592baddefd6b3b63225c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_94c0e261a002b3759022326f4176584d537673eb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_877666778aa194f469208162853e87f57f9ecb84\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_300c151180fee74ae1eddefb6a3000c4950043cb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_24dcba7f58b508e9c3c01708b40e585f2a2895cf\classes.dex" />
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-beta4_64deafe74da7058723f86b09ccff996d28a92530\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -381,21 +291,48 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e88b53c16e69a15a95bcacdbf60923299ee69886">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_56ee6db21bce56121e1ed1e440e753f6b7b66549\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_d10079e73e259b36bd6b79be23f83a6247271cf8\classes.dex" />
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_3bd8b951ab72794739d63469ee93c318f25b115f\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_6f192ddf46724e4e10f3690ac7f3e3ae12539f37\classes.dex" />
+        sha1="da676b02f5ef6ecf1c50ade926ad5249b8f81388">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3fac21670dc8798ca509cbecc9e565178a8d2fe1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_490f86a2935843f9142cca0a598e86c16d2f9f02\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_df10a0ca6524d406a3b71a90fe120d2db2c0d7bd\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -414,6 +351,15 @@
         revision="25.0.0"
         sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
         <dex dex="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-6.1.0_07314298422d156f8cbbddf76a6208ac26cb58e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_bff347cdb03545399716d0add4a4fd8d40bf37d2\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -444,12 +390,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.getbase\floatingactionbutton\1.10.1\jars\classes.jar"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="f40cf334cdc8b098b74312e21c7741c6eefbeb0e">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.getbase-floatingactionbutton-1.10.1_0e15cb6218e738375423d9412ca8cbb3451ba150\classes.dex" />
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_68211a42135eaddae9afbfc979f832db7c2e83a5\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -471,21 +417,21 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_9dddd3742ee7a32a85798563cacdc96d3d00a0da\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.getbase\floatingactionbutton\1.10.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="f40cf334cdc8b098b74312e21c7741c6eefbeb0e">
         <dex dex="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.getbase-floatingactionbutton-1.10.1_f4564c4b45675c9b4e75231181d4d80b60cabda5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\Users\Enrique\Desktop\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_a9d3da299b6cf5ec4d930a004157813d780a5511\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -498,6 +444,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_ad0f16fb216e4905d97fd7c5bc2ddb8250a41dcb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_edb595c563d88fc35ef11a3083d4d41ac9707a5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -507,12 +471,48 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_016dfbe785d76050ad03977e0479ced48a4e7f7b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_9959626960e1c6a1196a7b154f25dab61d8e7731\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Enrique\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.9.5\31b98a67bed065295ca86fab61e1b7601510a193\joda-time-2.9.5-no-tzdb.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="31b98a67bed065295ca86fab61e1b7601510a193">
         <dex dex="C:\Users\Enrique\Downloads\Cubelizer-master (1)\Cubelizer-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\joda-time-2.9.5-no-tzdb_3d0fbad8bf0ba4962eb970a785b640a30ba3674c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_874ea3b476599ccf0c81b7476efcb1e2511c3a09\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Users\Enrique\Desktop\GitHub\Cubelizer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_6d7fe4d1dd23ddb46b07c43f4b97389826465f27\classes.dex" />
     </item>
     <item
         is-multidex="true"

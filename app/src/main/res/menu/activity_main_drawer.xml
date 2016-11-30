@@ -13,16 +13,16 @@
             <item
                 android:id="@+id/nav_plano"
                 android:icon="@drawable/ic_floor_orange"
-                android:title="Plan" />
+                android:title="Background" />
             <item
                 android:id="@+id/nav_foto"
-                android:icon="@drawable/ic_photo_orange"
-                android:title="Plan + Photo"
+                android:icon="@drawable/ic_walk_orange"
+                android:title="Activity"
                 />
             <item
                 android:id="@+id/nav_calor"
-                android:icon="@drawable/ic_walk_orange"
-                android:title="Plan + People" />
+                android:icon="@drawable/ic_arrows_orange"
+                android:title="Flow" />
             <item
                 android:id="@+id/nav_todo"
                 android:icon="@drawable/ic_filled_orange"
