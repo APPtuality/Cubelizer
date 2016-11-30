@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (FAB_Status == false) {
                     //Display FAB menu
                     expandFAB();
-                    mostrarPlano();
+                    planoImagen();
                     FAB_Status = true;
                 } else {
                     //Close FAB menu
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planoActividad();
+                mostrarFlow();
             }
         });
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarTodo();
+                mostrarFlow();
             }
         });
 
@@ -365,20 +365,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id == R.id.nav_login){
+
             startActivity(new Intent(this, LogoutActivity.class));
+
         }else if (id == R.id.nav_settings) {
+
             startActivity(new Intent(this, Preferencias.class));
 
         } else if (id == R.id.nav_plano) {
-            mostrarPlano();
+            //Floorplan + background image
+            planoImagen();
 
         } else if (id == R.id.nav_foto) {
+            //Floorplan + background image + activity map
             planoActividad();
 
         } else if (id == R.id.nav_calor) {
-            planoActividad();
+            //Floorplan + background image + UA polygons + UA flows
+            mostrarFlow();
         } else if (id == R.id.nav_todo) {
-            mostrarTodo();
+            //Floorplan + background image + activity map + UA polygons + UA flows
+            mostrarFlow();
         }else if (id == R.id.nav_share) {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -397,12 +404,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TRATAMIENTO DE LAS IMÁGENES SUPERPUESTAS
      */
     //Función que nos muestra únicamente la imagen plano.
+    /*
     public void mostrarPlano(){
         tvDimensiones.setText(Integer.toString(bMapPlano.getWidth()) + " x " + Integer.toString(bMapPlano.getHeight()));
         ivImagen.setImageBitmap(bMapPlano);
         mPinchZoomImageView.setImageBitmap(bMapPlano);
     }
-
+*/
     //Función que nos muestra el plano + la imagen real de la tienda
     public void planoImagen() {
         //mostramos dimensiones despues de escalarlo
@@ -446,7 +454,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     //Función que nos muestra el todas las capas juntas
-    public void mostrarTodo(){
+    public void mostrarFlow(){
         //mostramos dimensiones despues de escalarlo
         tvDimensiones.setText(Integer.toString(bMapActividad.getWidth()) + " x " +
                 Integer.toString(bMapActividad.getHeight()));
