@@ -94,12 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-        //Recogemos los datos del LoginActivity
-        Bundle extras = getIntent().getExtras();
-        String sUser = extras.getString("user");
-        String pAss = extras.getString("password");
-
         //Llamamos a la función zoom, encargada de gestionar las imágenes
         zoom();
         //Menú hamburguesa
