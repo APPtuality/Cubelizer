@@ -1,12 +1,12 @@
 ﻿![title](cubelizer_completo.png)
-##Proyecto Final Talentum Telefónica Educacion Digital 2
+##Proyecto Final Talentum Telefónica Educacion Digital
 
 
 ##Manual de instalación APK:
 
-####***Habilitar "orígenes desconocidos", paso a paso***
-
 Primero descargar la aplicación APK desde [aqui](https://www.dropbox.com/s/750kba678jt6lln/app-debug.apk?dl=0)
+
+####***Habilitar "orígenes desconocidos", paso a paso***
 
 En la gran mayoría de los dispositivos Android actuales el proceso es el siguiente:
 
