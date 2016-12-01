@@ -3,6 +3,8 @@ package com.app.talentum.cubelizer.cubelizer.map;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.DateFormat;
+import android.icu.util.Calendar;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -33,6 +35,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -42,21 +45,14 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
     private static final int REQUEST_SIGNUP = 0;
     public static final String SERVER_URL_DAY = "http://52.59.217.121/v0/get_day";
 
-    Button loginButton;;
-    String pass;
-    String user;
-    String map;
-    Context context;
     HttpClient client;
-    Usuario usuario;
-    int marcador;
     HttpGetWithEntity httpGetWithEntity;
     JsonRespon jsonRespon;
     String activity_map;
     String background;
     String flow_mag_map;
     String flow_angle_map;
-    String day;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +61,11 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
         //Escondemos la barra superior de navegación para mostrar la pantalla de Login
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
+
+
+
         isNetworkAvailable();
+
     }
 
     private boolean isNetworkAvailable() {
@@ -97,6 +97,7 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
         protected Void doInBackground(String... params) {
             Reader reader = null;
             Gson gson = new Gson();
+
             try {
                 client = new DefaultHttpClient();
                 httpGetWithEntity = new HttpGetWithEntity(SERVER_URL_DAY);
@@ -105,14 +106,27 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
                 HashMap<String,String> user = session.getUserDetails();
                 String name =  user.get(UserSessionManager.KEY_USER);
                 String pass =  user.get(UserSessionManager.KEY_PASS);
-                System.out.println("Estoy aqui"+ name + pass);
+
+                String day = "";
+
+                if(day.isEmpty()) {
+                    Date date = new Date();
+                    int year = date.getYear() + 1900;
+                    int month = date.getMonth() + 1;
+                    day = year + "-" + month + "-" + date.getDate();
+                } else {
+                    Intent intent = getIntent();
+                    Bundle extras = intent.getExtras();
+                    day = (String) extras.get("day");
+                }
+
                 /*
                 Creamos el objeto Json
                  */
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("user", name);
                 jsonObject.put("password", pass);
-                jsonObject.put("day","2016-09-10");
+                jsonObject.put("day", day);
                 Log.d("Gabriel => ", jsonObject.toString());
 
                 StringEntity stringEntity = new StringEntity(jsonObject.toString(), "UTF8");

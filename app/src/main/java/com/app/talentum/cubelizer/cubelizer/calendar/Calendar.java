@@ -64,7 +64,7 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         mListener = listener;
     }
     public interface DayViewOnClickListener {
-        public void onDaySelected(int day);
+        public String onDaySelected(int day);
     }
 
 

@@ -35,6 +35,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
 import com.app.talentum.cubelizer.cubelizer.imageNew.PhotoView;
 import com.app.talentum.cubelizer.cubelizer.imageNew.PhotoViewAttacher;
+import com.app.talentum.cubelizer.cubelizer.map.GetDayActivity;
 import com.app.talentum.cubelizer.cubelizer.map.GetMapActivity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
@@ -149,14 +151,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
+        final DatePicker dia = (DatePicker) findViewById(R.id.datePicker);
         Calendar calendar = (Calendar) findViewById(R.id.listener_calendar);
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
 
             @Override
-            public void onDaySelected(int day) {
+            public String onDaySelected(int day) {
                 View parentLayout = findViewById(android.R.id.content);
-                String selectedDay=getString(R.string.selected_day);
-                Snackbar.make(parentLayout, selectedDay + day, Snackbar.LENGTH_SHORT).show();
+                String diaPulsado = String.valueOf(dia.getYear() + "-" + dia.getMonth() + "-" + day);
+                Snackbar.make(parentLayout, "Seleted Day: " + day, Snackbar.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), GetDayActivity.class);
+                intent.putExtra("day",diaPulsado);
+                startActivity(intent);
+                return diaPulsado;
             }
         });
 
@@ -477,7 +485,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TEXT, "<h1>Hola</h1>");
             startActivity(Intent.createChooser(intent, "Share with"));
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
