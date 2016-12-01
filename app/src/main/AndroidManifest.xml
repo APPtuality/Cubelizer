@@ -38,6 +38,14 @@
             android:name=".LogoutActivity"
             android:theme="@style/AppTheme.Dark.Dialog">
         </activity>
+        <activity
+        android:name=".map.GetMapActivity"
+        >
+    </activity>
+        <activity
+            android:name=".imageNew.PicassoSampleActivity"
+            >
+        </activity>
     </application>
 
 </manifest>

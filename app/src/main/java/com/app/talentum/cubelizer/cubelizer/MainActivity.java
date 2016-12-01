@@ -1,5 +1,7 @@
 package com.app.talentum.cubelizer.cubelizer;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +10,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +18,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -33,12 +37,31 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
+import com.app.talentum.cubelizer.cubelizer.map.GetMapActivity;
+import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
+import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
+import com.google.gson.Gson;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private ImageView ivImagen;
     private TextView tvDimensiones;
-    private Bitmap bMapPlano,bMapImagen,bMapActividad;
+    private Bitmap bMapPlano, bMapImagen, bMapActividad;
     private Display display;
     private Point size;
     //float scale =1f;
@@ -79,11 +102,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation hide_fab_2;
     Animation show_fab_3;
     Animation hide_fab_3;
+    String map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            map =(String)extras.get("map");
+        }
+
 
         Calendar calendar = (Calendar) findViewById(R.id.listener_calendar);
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
@@ -111,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         rootLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
     }
 
-    private void floatingButton(){
+    private void floatingButton() {
 
 
         //Enlazamos las animaciones de los botones flotantes
@@ -193,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
     private void expandFAB() {
         //Floating Action Button 1
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
@@ -218,6 +250,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab3.startAnimation(show_fab_3);
         fab3.setClickable(true);
     }
+
     private void hideFAB() {
         //Floating Action Button 1
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
@@ -263,6 +296,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             );
         }
     }
+
     //Función que se encarga de gestionar el zoom
     private void zoom() {
         //Unimos los elementos con sus ids
@@ -321,17 +355,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ivImagen.setImageBitmap(bMapPlano);
         mPinchZoomImageView.setImageBitmap(bMapPlano);
     }
+
     private void pinchZoomPan() {
         ivImagen.setAlpha(0.f);
         mPinchZoomImageView.setVisibility(View.VISIBLE);
     }
+
     //Tratamiento de las imágenes en vertical
     public boolean orientacionDispositivoVertical() {
         int rotacion = display.getRotation();
-        if (rotacion== Surface.ROTATION_0 || rotacion == Surface.ROTATION_180) {
+        if (rotacion == Surface.ROTATION_0 || rotacion == Surface.ROTATION_180) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -347,7 +382,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -360,15 +394,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected (MenuItem item){
+    public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id == R.id.nav_login){
+        if (id == R.id.nav_login) {
 
             startActivity(new Intent(this, LogoutActivity.class));
 
-        }else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
 
             startActivity(new Intent(this, Preferencias.class));
 
@@ -386,16 +420,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_todo) {
             //Floorplan + background image + activity map + UA polygons + UA flows
             mostrarFlow();
-        }else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
 
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "<h1>Hola</h1>");
-        startActivity(Intent.createChooser(intent, "Share with"));
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "<h1>Hola</h1>");
+            startActivity(Intent.createChooser(intent, "Share with"));
 
-    }
+        }
 
-    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -433,7 +467,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     //Función que nos muestra el plano y la actividad de la tienda
-    public void planoActividad(){
+    public void planoActividad() {
         //mostramos dimensiones despues de escalarlo
         tvDimensiones.setText(Integer.toString(bMapActividad.getWidth()) + " x " +
                 Integer.toString(bMapActividad.getHeight()));
@@ -454,7 +488,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     //Función que nos muestra el todas las capas juntas
-    public void mostrarFlow(){
+    public void mostrarFlow() {
         //mostramos dimensiones despues de escalarlo
         tvDimensiones.setText(Integer.toString(bMapActividad.getWidth()) + " x " +
                 Integer.toString(bMapActividad.getHeight()));
@@ -474,6 +508,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ivImagen.setImageBitmap(bMap);
         mPinchZoomImageView.setImageBitmap(bMap);
     }
+
     /*
    TRATAMIENTO DE CAPTURAS DE PANTALLA
     */
@@ -505,6 +540,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         }
     }
+
     private void openScreenshot(File imageFile) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);

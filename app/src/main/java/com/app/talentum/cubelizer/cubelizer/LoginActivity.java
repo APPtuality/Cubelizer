@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
+import com.app.talentum.cubelizer.cubelizer.imageNew.PicassoSampleActivity;
+import com.app.talentum.cubelizer.cubelizer.map.GetMapActivity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
 import com.app.talentum.cubelizer.cubelizer.persistencia.UserSessionManager;
@@ -110,20 +112,12 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
         String error;
         ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         String data;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             user = userText.getText().toString();
             pass = passwordText.getText().toString();
-/*
-            if(validarString(user)&& validarString(pass)){
-                PreferenciasFragment.setString(context, PreferenciasFragment.getKeyUserEd(),user);
-                PreferenciasFragment.setString(context, PreferenciasFragment.getKeyPassEd(),pass);
-                //PreferenciasFragment.showUserSettings(context);
-            }else{
-                Toast.makeText(getApplicationContext(),"Invalid User", Toast.LENGTH_SHORT).show();
-            }
-            */
             progressDialog.setTitle("Please wait...");
             progressDialog.show();
         }
@@ -152,7 +146,6 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
                     reader = new InputStreamReader(ips);
                     jsonRespon = gson.fromJson(reader, JsonRespon.class);
                     Log.e("RESPUESTA", jsonRespon.toString());
-
                 }
 
             }catch (JSONException e) {
@@ -187,23 +180,18 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
     }
     private void saveUser(String us, String pass){
         session.createUserLoginSession(us);
-        //PreferenciasFragment.setString(context,PreferenciasFragment.getKeyUserEd(),us);
-        //PreferenciasFragment.setString(context,PreferenciasFragment.getKeyUserEd(),pass);
-        //PreferenciasFragment.showUserSettings(context);
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
-        /*Usuario newUs = new Usuario();
+        Usuario newUs = new Usuario();
         newUs.setUsuario(us);
         newUs.setPassword(pass);
         Log.i("MainActivity",newUs.toString());
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PicassoSampleActivity.class);
         intent.putExtra("user", us);
         intent.putExtra("password",pass);
-        startActivity(intent);*/
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
     /*
     private String prettyfyJSON(String json){

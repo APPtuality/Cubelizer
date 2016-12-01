@@ -3,6 +3,7 @@ package com.app.talentum.cubelizer.cubelizer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,6 +17,9 @@ public class LogoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Escondemos la barra superior de navegación para mostrar la pantalla de Login
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_logout);
         session = new UserSessionManager(getApplicationContext());
         TextView tvUsuario = (TextView)findViewById(R.id.tvUsuario);
