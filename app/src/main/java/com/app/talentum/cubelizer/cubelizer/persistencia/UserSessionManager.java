@@ -21,7 +21,7 @@ public class UserSessionManager {
     private static final String PREFER_NAME = "AndroidExample";
     private static final String IS_USER_LOGIN = "IsUserLoggedIn";
     public static final String KEY_USER = "name";
-    //private static final String KEY
+    public static final String KEY_PASS = "pass";
 
     //Constructor
     public UserSessionManager(Context context){
@@ -31,9 +31,10 @@ public class UserSessionManager {
 
 
     }
-    public void createUserLoginSession(String name){
+    public void createUserLoginSession(String name, String pass){
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(KEY_USER, name);
+        editor.putString(KEY_PASS, pass);
         editor.commit();
     }
     public boolean checkLogin(){
@@ -46,11 +47,14 @@ public class UserSessionManager {
         }
         return false;
     }
+
     public HashMap<String, String> getUserDetails(){
         HashMap<String,String>user = new HashMap<>();
         user.put(KEY_USER, sharedPreferences.getString(KEY_USER,null));
+        user.put(KEY_PASS, sharedPreferences.getString(KEY_PASS,null));
         return user;
     }
+
     public void logoutUser(){
         editor.clear();
         editor.commit();

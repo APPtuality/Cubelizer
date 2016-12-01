@@ -26,10 +26,14 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark.Dialog"></activity>
+            android:theme="@style/AppTheme.Dark.Dialog">
+        </activity>
+
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".Preferencias">
         </activity>
@@ -38,10 +42,15 @@
             android:name=".LogoutActivity"
             android:theme="@style/AppTheme.Dark.Dialog">
         </activity>
+
         <activity
-        android:name=".map.GetMapActivity"
-        >
-    </activity>
+        android:name=".map.GetMapActivity">
+        </activity>
+
+        <activity
+            android:name=".map.GetDayActivity">
+        </activity>
+
         <activity
             android:name=".imageNew.PicassoSampleActivity"
             >

@@ -51,7 +51,7 @@ public class Result {
     }
 
     public String getActivityMap() {
-        if (activityMap.isEmpty()){
+        if (activityMap == ""){
             activityMap = "nullActivityMap";
         }
         return activityMap;
@@ -62,7 +62,7 @@ public class Result {
     }
 
     public String getBackground() {
-        if (background.isEmpty()){
+        if (background == ""){
             background = "nullBackground";
         }
         return background;
@@ -73,7 +73,7 @@ public class Result {
     }
 
     public String getFlowMagMap() {
-        if (flowMagMap.isEmpty()){
+        if (flowMagMap == ""){
             flowMagMap = "nullFlowMagMap";
         }
         return flowMagMap;
@@ -84,7 +84,7 @@ public class Result {
     }
 
     public String getFlowAngleMap() {
-        if (flowAngleMap.isEmpty()){
+        if (flowAngleMap == ""){
             flowAngleMap = "nullFlowAngleMap";
         }
         return flowAngleMap;

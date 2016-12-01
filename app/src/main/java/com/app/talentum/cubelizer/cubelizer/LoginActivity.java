@@ -179,15 +179,14 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
         }
     }
     private void saveUser(String us, String pass){
-        session.createUserLoginSession(us);
+        session.createUserLoginSession(us,pass);
         Usuario newUs = new Usuario();
         newUs.setUsuario(us);
         newUs.setPassword(pass);
         Log.i("MainActivity",newUs.toString());
 
         Intent intent = new Intent(getApplicationContext(), GetMapActivity.class);
-        intent.putExtra("user", us);
-        intent.putExtra("password",pass);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

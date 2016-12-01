@@ -9,15 +9,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-import com.app.talentum.cubelizer.cubelizer.LoginActivity;
 import com.app.talentum.cubelizer.cubelizer.MainActivity;
-import com.app.talentum.cubelizer.cubelizer.R;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
-import com.app.talentum.cubelizer.cubelizer.imageNew.PicassoSampleActivity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
 import com.app.talentum.cubelizer.cubelizer.persistencia.UserSessionManager;
@@ -31,7 +27,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,17 +36,27 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 
-public class GetMapActivity extends AppCompatActivity implements Serializable{
+public class GetDayActivity extends AppCompatActivity implements Serializable{
 
-    private static final String TAG = "GetMapActivity";
+    private static final String TAG = "GetDayActivity";
     private static final int REQUEST_SIGNUP = 0;
-    public static final String SERVER_URL_MAP = "http://52.59.217.121/v0/get_map";
+    public static final String SERVER_URL_DAY = "http://52.59.217.121/v0/get_day";
 
+    Button loginButton;;
+    String pass;
+    String user;
+    String map;
+    Context context;
     HttpClient client;
+    Usuario usuario;
+    int marcador;
     HttpGetWithEntity httpGetWithEntity;
     JsonRespon jsonRespon;
-    String mapaPlano;
-
+    String activity_map;
+    String background;
+    String flow_mag_map;
+    String flow_angle_map;
+    String day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +72,8 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null) {
-            new ConexionGetMapRest().execute(SERVER_URL_MAP);
-            Log.v("LoginActivity", SERVER_URL_MAP);
+            new ConexionGetMapRest().execute(SERVER_URL_DAY);
+            Log.v("LoginActivity", SERVER_URL_DAY);
         } else {
             Log.v("LoginActivity", "No hay conexion disponible");
         }
@@ -79,7 +84,7 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
     **/
     private class ConexionGetMapRest extends AsyncTask<String, Void, Void> {
         final HttpClient httpClient = new DefaultHttpClient();
-        ProgressDialog progressDialog = new ProgressDialog(GetMapActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(GetDayActivity.this);
 
         @Override
         protected void onPreExecute() {
@@ -94,10 +99,10 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
             Gson gson = new Gson();
             try {
                 client = new DefaultHttpClient();
-                httpGetWithEntity = new HttpGetWithEntity(SERVER_URL_MAP);
+                httpGetWithEntity = new HttpGetWithEntity(SERVER_URL_DAY);
 
                 UserSessionManager session = new UserSessionManager(getApplicationContext());
-                HashMap<String,String>user = session.getUserDetails();
+                HashMap<String,String> user = session.getUserDetails();
                 String name =  user.get(UserSessionManager.KEY_USER);
                 String pass =  user.get(UserSessionManager.KEY_PASS);
                 System.out.println("Estoy aqui"+ name + pass);
@@ -107,7 +112,8 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("user", name);
                 jsonObject.put("password", pass);
-                Log.d(TAG, jsonObject.toString());
+                jsonObject.put("day","2016-09-10");
+                Log.d("Gabriel => ", jsonObject.toString());
 
                 StringEntity stringEntity = new StringEntity(jsonObject.toString(), "UTF8");
                 stringEntity.setContentType("application/json");
@@ -119,7 +125,10 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
                     InputStream ips = response.getEntity().getContent();
                     reader = new InputStreamReader(ips);
                     jsonRespon = gson.fromJson(reader, JsonRespon.class);
-                    mapaPlano = jsonRespon.getResult().getMap();
+                    activity_map = jsonRespon.getResult().getActivityMap();
+                    background = jsonRespon.getResult().getBackground();
+                    flow_mag_map = jsonRespon.getResult().getFlowMagMap();
+                    flow_angle_map = jsonRespon.getResult().getFlowAngleMap();
                     Log.e("RESPUESTA", jsonRespon.toString());
                 }
             } catch (JSONException e) {
@@ -142,19 +151,33 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
                 solicitarGetMap();
             } else {
                 String mens = jsonRespon.getMessage();
-                Log.i("LoginActivity", "Error en el login");
+                Log.i("LoginActivity", mens);
             }
             Log.i("MainActivity", jsonRespon.toString());
         }
 
+
         public void solicitarGetMap() {
-            String map = mapaPlano;
-            Log.d("MAPA_STRING", map);
-            Intent i = new Intent (getApplicationContext(), GetDayActivity.class);
-            i.putExtra("map", map);
-            startActivity(i);
+
+            String sActivity_map = activity_map;
+            String sBackground = background;
+            String sFlow_mag_map = flow_mag_map;
+            String sFlow_angle_map = flow_angle_map;
+
+
+            Log.d("ActivityMap", sActivity_map);
+            Log.d("background", sBackground);
+            Log.d("flow_mag_map", sFlow_mag_map);
+            Log.d("flow_angle_map", sFlow_angle_map);
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+            intent.putExtra("ActivityMap", sActivity_map);
+            intent.putExtra("background", sBackground);
+            intent.putExtra("flow_mag_map", sFlow_mag_map);
+            intent.putExtra("flow_angle_map", sFlow_angle_map);
+            startActivity(intent);
         }
     }
 }
-
 

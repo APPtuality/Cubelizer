@@ -67,6 +67,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton fab2;
     FloatingActionButton fab3;
     CoordinatorLayout rootLayout;
+
     /*
     Estado de los botones FAB: false -> fab = escondido; true -> fab = visto.
      */
@@ -107,17 +110,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation hide_fab_2;
     Animation show_fab_3;
     Animation hide_fab_3;
+    String user;
+    String pass;
     String sMap;
+    String sAct;
+    String sBack;
+    String sFlow;
+    String sFlow_a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
 
+        Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            sMap =(String)extras.get("map");
-            Log.e("hola------------->",sMap);
+            sAct = (String)extras.get("ActivityMap");
+            sBack = (String)extras.get("background");
+            sFlow = (String)extras.get("flow_mag_map");
+            sFlow_a = (String)extras.get("flow_angle_map");
+            Log.e("hola1------------->",sAct);
+            Log.e("hola2------------->",sBack);
+            Log.e("hola3------------->",sFlow);
+            Log.e("hola4------------->",sFlow_a);
         }
 
         setContentView(R.layout.activity_main);
@@ -137,16 +152,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Calendar calendar = (Calendar) findViewById(R.id.listener_calendar);
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
+
             @Override
             public void onDaySelected(int day) {
                 View parentLayout = findViewById(android.R.id.content);
                 Snackbar.make(parentLayout, "Seleted Day: " + day, Snackbar.LENGTH_SHORT).show();
-
             }
         });
 
         //Llamamos a la función zoom, encargada de gestionar las imágenes
-        //zoom();
+        Zoom(sMap);
         //Menú hamburguesa
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -295,6 +310,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab3.startAnimation(hide_fab_3);
         fab3.setClickable(false);
     }
+
+    private Bitmap Zoom(String sMap){
+
+        try {
+            URL urlvalue = new URL(sMap);
+            if(urlvalue != null){
+                bMapPlano = BitmapFactory.decodeStream(urlvalue.openConnection().getInputStream());
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bMapPlano;
+    }
+
+
 
     /*
     TRATAMIENTO DEL ZOOM
@@ -456,6 +488,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     /*
     TRATAMIENTO DE LAS IMÁGENES SUPERPUESTAS
