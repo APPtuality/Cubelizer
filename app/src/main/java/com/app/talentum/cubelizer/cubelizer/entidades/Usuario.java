@@ -1,8 +1,6 @@
 package com.app.talentum.cubelizer.cubelizer.entidades;
 
-/**
- * Created by Daboom on 28/11/2016.
- */
+
 
 public class Usuario {
     String usuario;

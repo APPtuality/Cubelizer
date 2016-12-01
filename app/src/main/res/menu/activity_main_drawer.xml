@@ -2,25 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="Configuration">
+    <item android:title="@string/Settings">
         <menu>
             <item
                 android:id="@+id/nav_login"
-                android:icon="@drawable/ic_setting_orange"
+                android:icon="@drawable/ic_login_orange"
                 android:title="@string/UserAcount"/>
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_setting_orange"
-                android:title="@string/Settings"/>
         </menu>
     </item>
-    <item android:title="Activity">
+    <item android:title="@string/Activity">
 
         <menu>
             <item
                 android:id="@+id/nav_plano"
                 android:icon="@drawable/ic_floor_orange"
-                android:title="@string/Background" /> />
+                android:title="@string/Background" />
             <item
                 android:id="@+id/nav_foto"
                 android:icon="@drawable/ic_walk_orange"
@@ -41,13 +37,13 @@
         </menu>
     </item>
 
-    <item android:title="Communicate">
+    <item android:title="@string/Comunicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:showAsAction="ifRoom"
-                android:title="Share"
+                android:title="@string/share"
                 android:actionProviderClass="android.widget.ShareActionProvider"/>
         </menu>
     </item>

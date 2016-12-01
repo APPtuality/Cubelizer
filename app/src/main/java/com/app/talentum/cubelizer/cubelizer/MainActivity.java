@@ -38,7 +38,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
@@ -156,7 +155,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDaySelected(int day) {
                 View parentLayout = findViewById(android.R.id.content);
-                Snackbar.make(parentLayout, "Seleted Day: " + day, Snackbar.LENGTH_SHORT).show();
+                String selectedDay=getString(R.string.selected_day);
+                Snackbar.make(parentLayout, selectedDay + day, Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -456,10 +456,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_login) {
 
             startActivity(new Intent(this, LogoutActivity.class));
-
-        } else if (id == R.id.nav_settings) {
-
-            startActivity(new Intent(this, Preferencias.class));
 
         } else if (id == R.id.nav_plano) {
             //Floorplan + background image

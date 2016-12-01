@@ -7,9 +7,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-/**
- * Created by Veronica on 27/11/2016.
- */
+
 
 public class PreferenciasFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -82,7 +80,7 @@ public class PreferenciasFragment extends PreferenceFragment implements SharedPr
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        switch (key){
+       /* switch (key){
             case KEY_USER_ED:
                 String valor_user_ed = sharedPreferences.getString(KEY_USER_ED,"NULL");
                 Toast.makeText(getActivity().getApplicationContext(),"New user: "+valor_user_ed+" saved.", Toast.LENGTH_LONG).show();
@@ -102,9 +100,9 @@ public class PreferenciasFragment extends PreferenceFragment implements SharedPr
             case KEY_LANGUAGE:
                 String valor_language = sharedPreferences.getString(KEY_LANGUAGE, "NULL");
                 Toast.makeText(getActivity().getApplicationContext(),"New preferences changes",Toast.LENGTH_LONG).show();
-                break;
+                break;*/
         }
-    }
+
     @Override
     public void onPause() {
         super.onPause();

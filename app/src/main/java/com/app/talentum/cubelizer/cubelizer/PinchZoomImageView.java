@@ -9,9 +9,6 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
 
-/**
- * Created by Veronica on 27/11/2016.
- */
 
 public class PinchZoomImageView extends ImageView {
 

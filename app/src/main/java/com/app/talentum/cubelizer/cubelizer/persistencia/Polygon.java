@@ -6,9 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Astrid on 29/11/2016.
- */
+
 
 public class Polygon {
 

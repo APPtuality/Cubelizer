@@ -3,9 +3,6 @@ package com.app.talentum.cubelizer.cubelizer.persistencia;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Astrid on 29/11/2016.
- */
 
 public class JsonRespon {
 

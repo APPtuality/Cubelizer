@@ -86,7 +86,6 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
         userText = (EditText)findViewById(R.id.input_user);
         passwordText = (EditText)findViewById(R.id.input_password);
         loginButton = (Button)findViewById(R.id.btn_login);
-        Toast.makeText(getApplicationContext(),"USer Login status" + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
 
         //Le damos funcionalidad al Botón de Login
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -171,8 +170,6 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
                 saveUser(user, pass);
 
             } else{
-                String mens = jsonRespon.getMessage();
-                Toast.makeText(getApplicationContext(),mens,Toast.LENGTH_SHORT).show();
                 Log.i("LoginActivity","Error en el login");
             }
             Log.i("MainActivity",jsonRespon.toString());
@@ -260,7 +257,9 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        String loginFail=this.getString(R.string.login_fail);
+
+        Toast.makeText(getBaseContext(), loginFail, Toast.LENGTH_LONG).show();
 
         loginButton.setEnabled(true);
     }

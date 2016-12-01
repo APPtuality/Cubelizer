@@ -8,9 +8,6 @@ import android.util.Log;
 
 import com.app.talentum.cubelizer.cubelizer.persistencia.UserSessionManager;
 
-/**
- * Created by Verónica on 26/11/2016.
- */
 
 public class SplashActivity extends AppCompatActivity {
     @Override

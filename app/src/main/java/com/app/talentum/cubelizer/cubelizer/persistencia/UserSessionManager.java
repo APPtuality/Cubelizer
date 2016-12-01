@@ -8,9 +8,6 @@ import com.app.talentum.cubelizer.cubelizer.LoginActivity;
 
 import java.util.HashMap;
 
-/**
- * Created by Verónica on 30/11/2016.
- */
 
 public class UserSessionManager {
 
