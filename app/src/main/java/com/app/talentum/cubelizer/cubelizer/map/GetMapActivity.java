@@ -17,6 +17,7 @@ import com.app.talentum.cubelizer.cubelizer.LoginActivity;
 import com.app.talentum.cubelizer.cubelizer.MainActivity;
 import com.app.talentum.cubelizer.cubelizer.R;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
+import com.app.talentum.cubelizer.cubelizer.imageNew.PicassoSampleActivity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
 import com.google.gson.Gson;
@@ -59,6 +60,9 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_login);
+        //Escondemos la barra superior de navegación para mostrar la pantalla de Login
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
         isNetworkAvailable();
     }
 

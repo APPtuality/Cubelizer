@@ -185,7 +185,7 @@ public class LoginActivity extends AppCompatActivity implements Serializable{
         newUs.setPassword(pass);
         Log.i("MainActivity",newUs.toString());
 
-        Intent intent = new Intent(getApplicationContext(), PicassoSampleActivity.class);
+        Intent intent = new Intent(getApplicationContext(), GetMapActivity.class);
         intent.putExtra("user", us);
         intent.putExtra("password",pass);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

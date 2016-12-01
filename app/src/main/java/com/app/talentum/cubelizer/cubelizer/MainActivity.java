@@ -32,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.support.design.widget.CoordinatorLayout;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -41,10 +42,14 @@ import android.widget.Toast;
 
 import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
 import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
+import com.app.talentum.cubelizer.cubelizer.imageNew.PhotoView;
+import com.app.talentum.cubelizer.cubelizer.imageNew.PhotoViewAttacher;
 import com.app.talentum.cubelizer.cubelizer.map.GetMapActivity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
 import com.google.gson.Gson;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -102,19 +107,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation hide_fab_2;
     Animation show_fab_3;
     Animation hide_fab_3;
-    String map;
+    String sMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         Intent intent = getIntent();
+
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            map =(String)extras.get("map");
+            sMap =(String)extras.get("map");
+            Log.e("hola------------->",sMap);
         }
 
+        setContentView(R.layout.activity_main);
+
+        PhotoView photoView = (PhotoView) findViewById(R.id.iv_photo);
+        final PhotoViewAttacher attacher = new PhotoViewAttacher(photoView);
+        Picasso.with(this).load(sMap).into(photoView, new Callback() {
+            @Override
+            public void onSuccess() {
+                attacher.update();
+            }
+            @Override
+            public void onError() {
+            }
+
+        });
 
         Calendar calendar = (Calendar) findViewById(R.id.listener_calendar);
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
@@ -122,11 +141,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDaySelected(int day) {
                 View parentLayout = findViewById(android.R.id.content);
                 Snackbar.make(parentLayout, "Seleted Day: " + day, Snackbar.LENGTH_SHORT).show();
+
             }
         });
 
         //Llamamos a la función zoom, encargada de gestionar las imágenes
-        zoom();
+        //zoom();
         //Menú hamburguesa
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -143,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void floatingButton() {
-
 
         //Enlazamos las animaciones de los botones flotantes
         show_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_show);
@@ -280,6 +299,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /*
     TRATAMIENTO DEL ZOOM
      */
+    /*
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -296,15 +316,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             );
         }
     }
-
+*/
     //Función que se encarga de gestionar el zoom
+    /*
     private void zoom() {
         //Unimos los elementos con sus ids
         tvDimensiones = (TextView) findViewById(R.id.tvDimensiones);
         ivImagen = (ImageView) findViewById(R.id.ivImagen);
         mPinchZoomImageView = (PinchZoomImageView) findViewById(R.id.pinchZoomImageView);
-
+*/
         /***********************Tratamiento de las imágenes**********************************/
+    /*
         display = getWindowManager().getDefaultDisplay();
         size = new Point();
         display.getSize(size);
@@ -315,8 +337,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int iWidth = bMapPlano.getWidth();
         int iHeight = bMapPlano.getHeight();
         float factor = (float) iWidth / (float) iHeight;
-
+*/
         /*Le damos funcionalidad a la imagen, para que permita la interacción con la misma*/
+    /*
         ivImagen.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -370,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return false;
         }
     }
-
+*/
     /*
     OPCIONES DEL MENU
      */
