@@ -1,7 +1,7 @@
 package com.app.talentum.cubelizer.cubelizer.persistencia;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import android.graphics.Point;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,32 +10,20 @@ import java.util.List;
 
 public class Polygon {
 
-    @SerializedName("name")
-    @Expose
     private String name;
-    @SerializedName("polygon")
-    @Expose
-    private List<Point> polygon = new ArrayList<Point>();
+    private List<android.graphics.Point> polygon = new ArrayList<android.graphics.Point>();
 
-        /**
-         *
-         * @return
-         * The name
-         */
-        public String getName() {
-            return name;
-        }
 
-        /**
-         *
-         * @param name
-         * The name
-         */
-        public void setName(String name) {
-            this.name = name;
-        }
+    public String getName() {
+        return name;
+    }
 
-    public List<Point> getPolygon() {
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<android.graphics.Point> getPolygon() {
         return polygon;
     }
 
