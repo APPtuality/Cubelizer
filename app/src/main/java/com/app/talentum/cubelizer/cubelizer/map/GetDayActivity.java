@@ -45,12 +45,12 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
     String background;
     String flow_mag_map;
     String flow_angle_map;
-    Intent intent;
     Bundle extras;
     String day = null;
     String map;
     String name;
     String pass;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +59,11 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
 
+        intent = getIntent();
+        extras = intent.getExtras();
+        if (extras != null) {
+            map = (String)extras.get("map");
+        }
         isNetworkAvailable();
     }
 
@@ -67,9 +72,9 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null) {
             new ConexionGetMapRest().execute(SERVER_URL_DAY);
-            Log.v("LoginActivity", SERVER_URL_DAY);
+            Log.v("GetDayActivity", SERVER_URL_DAY);
         } else {
-            Log.v("LoginActivity", "No hay conexion disponible");
+            Log.v("GetDayActivity", "No hay conexion disponible");
         }
         return true;
     }
@@ -101,11 +106,7 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
                 name =  user.get(UserSessionManager.KEY_USER);
                 pass =  user.get(UserSessionManager.KEY_PASS);
 
-                intent = getIntent();
-                extras = intent.getExtras();
-                if (extras != null) {
-                    map = (String)extras.get("map");
-                }
+
 
 /*
                 String day = "2016-09-10";

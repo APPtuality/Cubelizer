@@ -142,7 +142,7 @@ public class GetMapActivity extends AppCompatActivity implements Serializable{
                 solicitarGetMap();
             } else {
                 String mens = jsonRespon.getMessage();
-                Log.i("LoginActivity", "Error en el login");
+                Log.i("GetMapActivity", mens);
             }
             Log.i("MainActivity", jsonRespon.toString());
         }

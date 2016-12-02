@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         PhotoView photoView = (PhotoView) findViewById(R.id.iv_photo);
         final PhotoViewAttacher attacher = new PhotoViewAttacher(photoView);
-        Picasso.with(this).load(sAct).into(photoView, new Callback() {
+        Picasso.with(this).load(sMap).into(photoView, new Callback() {
             @Override
             public void onSuccess() {
                 attacher.update();
