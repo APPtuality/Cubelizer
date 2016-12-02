@@ -1,7 +1,6 @@
 package com.app.talentum.cubelizer.cubelizer;
 
-import android.app.ProgressDialog;
-import android.content.Context;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +9,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -18,21 +16,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
-import android.view.Surface;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import android.support.design.widget.CoordinatorLayout;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
@@ -41,39 +35,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.talentum.cubelizer.cubelizer.calendar.Calendar;
-import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
 import com.app.talentum.cubelizer.cubelizer.imageNew.PhotoView;
 import com.app.talentum.cubelizer.cubelizer.imageNew.PhotoViewAttacher;
 import com.app.talentum.cubelizer.cubelizer.map.GetDayActivity;
-import com.app.talentum.cubelizer.cubelizer.map.GetMapActivity;
-import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
-import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
-import com.google.gson.Gson;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -111,13 +86,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation hide_fab_2;
     Animation show_fab_3;
     Animation hide_fab_3;
-    String user;
-    String pass;
     String sMap;
     String sAct;
     String sBack;
     String sFlow;
     String sFlow_a;
+    String nodata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,21 +100,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
+            nodata = (String)extras.get("nodata");
+            sMap = (String)extras.get("map");
             sAct = (String)extras.get("ActivityMap");
             sBack = (String)extras.get("background");
             sFlow = (String)extras.get("flow_mag_map");
             sFlow_a = (String)extras.get("flow_angle_map");
-            Log.e("hola1------------->",sAct);
-            Log.e("hola2------------->",sBack);
-            Log.e("hola3------------->",sFlow);
-            Log.e("hola4------------->",sFlow_a);
         }
+
 
         setContentView(R.layout.activity_main);
 
+
+
         PhotoView photoView = (PhotoView) findViewById(R.id.iv_photo);
         final PhotoViewAttacher attacher = new PhotoViewAttacher(photoView);
-        Picasso.with(this).load(sMap).into(photoView, new Callback() {
+        Picasso.with(this).load(sAct).into(photoView, new Callback() {
             @Override
             public void onSuccess() {
                 attacher.update();
@@ -148,13 +123,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onError() {
             }
-
         });
 
         final DatePicker dia = (DatePicker) findViewById(R.id.datePicker);
         Calendar calendar = (Calendar) findViewById(R.id.listener_calendar);
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
-
             @Override
             public String onDaySelected(int day) {
                 View parentLayout = findViewById(android.R.id.content);

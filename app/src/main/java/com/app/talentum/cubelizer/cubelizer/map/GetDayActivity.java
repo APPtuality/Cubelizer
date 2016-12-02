@@ -3,8 +3,6 @@ package com.app.talentum.cubelizer.cubelizer.map;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.DateFormat;
-import android.icu.util.Calendar;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -12,10 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
-import android.widget.Button;
-
 import com.app.talentum.cubelizer.cubelizer.MainActivity;
-import com.app.talentum.cubelizer.cubelizer.entidades.Usuario;
 import com.app.talentum.cubelizer.cubelizer.persistencia.HttpGetWithEntity;
 import com.app.talentum.cubelizer.cubelizer.persistencia.JsonRespon;
 import com.app.talentum.cubelizer.cubelizer.persistencia.UserSessionManager;
@@ -35,9 +30,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.HashMap;
-
 
 public class GetDayActivity extends AppCompatActivity implements Serializable{
 
@@ -52,8 +45,12 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
     String background;
     String flow_mag_map;
     String flow_angle_map;
-
-
+    Intent intent;
+    Bundle extras;
+    String day = null;
+    String map;
+    String name;
+    String pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +59,7 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
 
-
-
         isNetworkAvailable();
-
     }
 
     private boolean isNetworkAvailable() {
@@ -104,30 +98,36 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
 
                 UserSessionManager session = new UserSessionManager(getApplicationContext());
                 HashMap<String,String> user = session.getUserDetails();
-                String name =  user.get(UserSessionManager.KEY_USER);
-                String pass =  user.get(UserSessionManager.KEY_PASS);
+                name =  user.get(UserSessionManager.KEY_USER);
+                pass =  user.get(UserSessionManager.KEY_PASS);
 
-                String day = "";
+                intent = getIntent();
+                extras = intent.getExtras();
+                if (extras != null) {
+                    map = (String)extras.get("map");
+                }
+
+/*
+                String day = "2016-09-10";
 
                 if(day.isEmpty()) {
                     Date date = new Date();
                     int year = date.getYear() + 1900;
                     int month = date.getMonth() + 1;
                     day = year + "-" + month + "-" + date.getDate();
+
                 } else {
-                    Intent intent = getIntent();
-                    Bundle extras = intent.getExtras();
                     day = (String) extras.get("day");
                 }
-
+*/
                 /*
                 Creamos el objeto Json
                  */
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("user", name);
                 jsonObject.put("password", pass);
-                jsonObject.put("day", day);
-                Log.d("Gabriel => ", jsonObject.toString());
+                jsonObject.put("day", "2016-09-10");
+                Log.d("Json de envio => ", jsonObject.toString());
 
                 StringEntity stringEntity = new StringEntity(jsonObject.toString(), "UTF8");
                 stringEntity.setContentType("application/json");
@@ -165,31 +165,31 @@ public class GetDayActivity extends AppCompatActivity implements Serializable{
                 solicitarGetMap();
             } else {
                 String mens = jsonRespon.getMessage();
-                Log.i("LoginActivity", mens);
+                Log.i("GetDayActivity", mens);
+                nodata();
             }
             Log.i("MainActivity", jsonRespon.toString());
         }
 
 
         public void solicitarGetMap() {
-
+            String mplano = map;
             String sActivity_map = activity_map;
             String sBackground = background;
             String sFlow_mag_map = flow_mag_map;
             String sFlow_angle_map = flow_angle_map;
 
-
-            Log.d("ActivityMap", sActivity_map);
-            Log.d("background", sBackground);
-            Log.d("flow_mag_map", sFlow_mag_map);
-            Log.d("flow_angle_map", sFlow_angle_map);
-
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("mplano", map);
             intent.putExtra("ActivityMap", sActivity_map);
             intent.putExtra("background", sBackground);
             intent.putExtra("flow_mag_map", sFlow_mag_map);
             intent.putExtra("flow_angle_map", sFlow_angle_map);
+            startActivity(intent);
+        }
+        public void nodata(){
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("nodata", "nodata");
             startActivity(intent);
         }
     }

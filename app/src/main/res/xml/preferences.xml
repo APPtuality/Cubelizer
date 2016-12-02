@@ -4,8 +4,6 @@
 
     <PreferenceCategory android:title="@string/data_selection">
 
-
-
         <ListPreference
             android:key="language_list"
             android:title="@string/language_selection"
