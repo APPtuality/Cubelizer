@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (FAB_Status == false) {
                     //Display FAB menu
-                    expandFAB();
+
                     planoImagen();
                     FAB_Status = true;
                 } else {
