@@ -4,7 +4,7 @@
 
 ##Manual de instalación APK:
 
-Primero descargar la aplicación APK desde [aqui](https://www.dropbox.com/s/750kba678jt6lln/app-debug.apk?dl=0)
+Primero descargar la aplicación APK desde [aqui](https://www.dropbox.com/s/2y3pkih5mmecvc7/app-debug.apk?dl=0)
 
 ####***Habilitar "orígenes desconocidos", paso a paso***
 
