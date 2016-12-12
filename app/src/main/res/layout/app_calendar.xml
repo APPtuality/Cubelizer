@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.app.talentum.cubelizer.cubelizer.calendar.Calendar
+    <com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Calendar
         android:id="@+id/listener_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

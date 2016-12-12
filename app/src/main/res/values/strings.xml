@@ -38,5 +38,4 @@
     <string name="user_login_status">"User login status"</string>
     <string name="login_fail">"Connection failure" </string>
     <string name="selected_day">"Selected day: "</string>
-
 </resources>

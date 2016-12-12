@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinatorLayout"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.app.talentum.cubelizer.cubelizer.MainActivity">
+    tools:context="com.app.apptuality.talentum.cubelizer.cubelizer.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -34,6 +35,5 @@
         app:srcCompat="@drawable/ic_floor_orange"
         app:layout_behavior=".Scrolling_Floating_Action_Button.FAB_Float_on_Scroll"
         app:layout_anchorGravity="center_vertical|right" />
-
 
 </android.support.design.widget.CoordinatorLayout>
