@@ -9,7 +9,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -17,8 +16,6 @@ import android.widget.TextView;
 import com.app.apptuality.talentum.cubelizer.cubelizer.R;
 import net.danlew.android.joda.JodaTimeAndroid;
 import org.joda.time.LocalDateTime;
-
-import java.util.Date;
 
 public class Calendar extends HorizontalScrollView implements View.OnClickListener {
 
@@ -64,7 +61,6 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         mListener = listener;
     }
     public interface DayViewOnClickListener {
-        //public String onDaySelected(Date day);
         public String onDaySelected(int day);
     }
 
@@ -108,7 +104,7 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
         //Init Start and End date with current month
         final LocalDateTime currentDateTime = new LocalDateTime();
-        setStartDateWithParts(currentDateTime.getYear());//, currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMinimumValue().getDayOfMonth());
+        setStartDateWithParts(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMinimumValue().getDayOfMonth());
         setEndDateWithParts(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMaximumValue().getDayOfMonth());
 
         //Inflate view
@@ -148,21 +144,20 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         render();
 
         //Set Selection. Default is today.
-        setSelectedDay(currentDateTime.
-                getDayOfMonth(), false, DELAY_SELECTION);
+        setSelectedDay(currentDateTime.getDayOfMonth(), false, DELAY_SELECTION);
     }
 
     /***
      * State modification
      */
     public void setStartAndEndDateWithParts(int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay) {
-        setStartDateWithParts(startYear);//, startMonth, startDay);
+        setStartDateWithParts(startYear, startMonth, startDay);
         setEndDateWithParts(endYear, endMonth, endDay);
 
         render();
     }
 
-    private void setStartDateWithParts(int year){//, int month, int day) {
+    private void setStartDateWithParts(int year, int month, int day) {
         mStartDate = new LocalDateTime(year, month, day, 0, 0, 0);
     }
 
@@ -264,7 +259,7 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
             }
         }
     }
-/*
+
     private void selectDay(int day) {
         for (int i = 1; i < mDaysContainer.getChildCount() - 1; i++) {
             DayView dayView = new DayView(mDaysContainer.getChildAt(i));
@@ -279,33 +274,7 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
             }
         }
     }
-    */
-/*
-    if(day.isEmpty()) {
-        Date date = new Date();
-        int year = date.getYear() + 1900;
-        int month = date.getMonth() + 1;
-        day = year + "-" + month + "-" + date.getDate();
 
-    } else {
-        day = (String) extras.get("day");
-    }
-    */
-
-    private void selectDay(Date date) {
-        for (int i = 1; i < mDaysContainer.getChildCount() - 1; i++) {
-            DayView dayView = new DayView(mDaysContainer.getChildAt(i));
-            if(dayView.getDay() == day) {
-
-                dayView.setTextColor(mSelectedDayTextColor);
-                dayView.setBackgroundColor(mSelectedDayBackgroundColor);
-
-                mSelectedDayView = dayView;
-
-                return;
-            }
-        }
-    }
     public void scrollToDayView(DayView dayView) {
         int x = dayView.getView().getLeft();
         int y = dayView.getView().getTop();
@@ -376,9 +345,8 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
     protected static class SavedState extends BaseSavedState {
         int mSelectedDay;
-
-        String mStartDateString;
         String mEndDateString;
+        String mStartDateString;
 
         public SavedState(Parcelable superState) {
             super(superState);
@@ -386,7 +354,6 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
         public SavedState(Parcel in) {
             super(in);
-
             mSelectedDay = in.readInt();
             mStartDateString = in.readString();
             mEndDateString = in.readString();
