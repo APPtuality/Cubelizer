@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/Settings">
+   <!-- <item android:title="@string/Settings">
         <menu>
             <item
                 android:id="@+id/nav_login"
                 android:icon="@drawable/ic_login_orange"
                 android:title="@string/UserAcount"/>
         </menu>
-    </item>
+    </item>-->
     <item android:title="@string/Activity">
 
         <menu>
             <item
                 android:id="@+id/nav_plano"
-                android:icon="@drawable/ic_floor_orange"
+                android:icon="@drawable/ic_floor_dark"
                 android:title="@string/Background" />
             <item
                 android:id="@+id/nav_foto"
-                android:icon="@drawable/ic_walk_orange"
+                android:icon="@drawable/ic_walk_dark"
                 android:title="@string/Activity"
                 />
             <item
                 android:id="@+id/nav_calor"
-                android:icon="@drawable/ic_arrows_orange"
+                android:icon="@drawable/ic_arrows_dark"
                 android:title="@string/Flow" />
             <item
                 android:id="@+id/nav_todo"
-                android:icon="@drawable/ic_filled_orange"
+                android:icon="@drawable/ic_filled_dark"
                 android:title="@string/All" />
            <!--item
                 android:id="@+id/nav_calendar"
@@ -35,7 +35,7 @@
                 android:title="@string/Calendar" />-->
             <item
                 android:id="@+id/nav_salir"
-                android:icon="@drawable/plano_prueba2"
+                android:icon="@drawable/ic_exit_dark"
                 android:title="@string/exit" />
 
         </menu>
@@ -46,7 +46,6 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:showAsAction="ifRoom"
                 android:title="@string/share"
                 android:actionProviderClass="android.widget.ShareActionProvider"/>
         </menu>

@@ -1,5 +1,6 @@
 package com.app.apptuality.talentum.cubelizer.cubelizer;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,15 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Connection;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.JsonRespon;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity implements Serializable {
@@ -50,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
         context = this;
 
         //Escondemos la barra superior de navegación para mostrar la pantalla de Login
-        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+       // getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         //getSupportActionBar().hide();
 
         //Llamamos a la activity que tiene estructurado el Login
@@ -172,14 +169,14 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
         }
 
 
-
+@Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (requestCode == REQUEST_SIGNUP) {
                 if (resultCode == RESULT_OK) {
 
                     // TODO: Implement successful signup logic here
                     // By default we just finish the Activity and log them in automatically
-                    finish();
+                    this.finish();
                 }
             }
         }
@@ -194,7 +191,7 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
             loginButton.setEnabled(true);
             finish();
         }
-/*
+
         public void onLoginFailed() {
             String loginFail = this.getString(R.string.login_fail);
 
@@ -202,7 +199,7 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
 
             loginButton.setEnabled(true);
         }
-*/
+
         public boolean validate() {
             boolean valid = true;
 

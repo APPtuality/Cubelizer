@@ -22,25 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/ivImagen" />
-<!--
-        <com.app.apptuality.talentum.cubelizer.cubelizer.persistence.PinchZoomImageView
-            android:visibility="invisible"
-            android:id="@+id/pinchZoomImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dimensiones: "
-            android:id="@+id/tvDimensiones"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="16dp" />
-            -->
         <DatePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +30,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="29dp"
             android:visibility="invisible"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -81,10 +81,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private float canvasScale;
     private Display display;
     private Point size;
-    private float dWidth;
+    //private float dWidth;
     float canvasScaleWidth;
     float canvasScaleHeight;
     float aspecRatio;
+    float aWidth,sWidth,aHeight,sHeight;
     RectF imageRectF;
     RectF viewRectF;
     Pintura pintura;
@@ -155,20 +156,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         display = getWindowManager().getDefaultDisplay();
-
+        /*
         if(orientacionDispositivoVertical()){
             dWidth = (float)displayMetrics.widthPixels;
 
         }else{
             dWidth = (float)displayMetrics.heightPixels;
         }
-
+        */
 
 
         /*TRATAMIENTO DEL CALENDARIO*/
         dia = (DatePicker) findViewById(R.id.datePicker);
+        /*dia.getYear();
+        int g = dia.getYear();
+        System.out.println("año :" + g);
+        int d = dia.getMonth();
+        System.out.println("mes: " + d);
+        int s = dia.getDayOfMonth();
+        System.out.println("dia: " + s);
+
+        checkFeatures();*/
+
         calendar = (Calendar) findViewById(R.id.listener_calendar);
-        //diaPulsado = "2016-09-10";
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
             @Override
             public String onDaySelected(int dia) {
@@ -189,7 +199,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         });
+        /*
+        calendar = (Calendar) findViewById(R.id.listener_calendar);
+        calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
+            @Override
+            public String onDaySelected(int day) {
+                View parentLayout = findViewById(android.R.id.content);
+                diaPulsado = String.valueOf(dia.getYear() + "-" + dia.getMonth() + "-" + day);
 
+                Snackbar.make(parentLayout, "Seleted Day: " + diaPulsado, Snackbar.LENGTH_SHORT).show();
+                diaPulsado = "2016-09-10";
+                new ConnectionBackground().execute();
+                new ConnectionActivity().execute();
+                //2016-09-10
+                //2016-11-25
+                //2016-01-10
+                return diaPulsado;
+            }
+
+        });
+*/
         /*MENU HAMBURGUESA*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -411,10 +440,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // VISTAS DE NAVEGACION
         int id = item.getItemId();
 
-        if (id == R.id.nav_login) {
+        /*if (id == R.id.nav_login) {
             startActivity(new Intent(this, LogoutActivity.class));
 
-        } else if (id == R.id.nav_plano) {
+        } else */
+        if (id == R.id.nav_plano) {
             //Floorplan + background image
             floorPlanAndBackground();
 
@@ -424,16 +454,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_calor) {
             //Floorplan + background image + UA polygons + UA flows
-
+            new ConnectionUAs().execute();
 
         } else if (id == R.id.nav_todo) {
             //Floorplan + background image + activity map + UA polygons + UA flows
+            new ConnectionUAsData().execute();
+
         }else if(id == R.id.nav_salir){
             finish();
+
        /* } else if (id == R.id.nav_calendar) {
             //Calendario
             dia.setVisibility(View.VISIBLE);
-
        */
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -599,34 +631,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void run(){
                 try {
-                URL imageUrl = null;
-                imageUrl = new URL(imageHttpAddress);
-                HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
-                conn.connect();
+                    URL imageUrl = null;
+                    imageUrl = new URL(imageHttpAddress);
+                    HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
+                    conn.connect();
 
-                bitmapFloorPlan = BitmapFactory.decodeStream(conn.getInputStream());
-
-                    aspecRatio = (float) bitmapFloorPlan.getHeight() / (float) bitmapFloorPlan.getWidth();
+                    bitmapFloorPlan = BitmapFactory.decodeStream(conn.getInputStream());
+                    //System.out.println("****bmap width1" +  bitmapFloorPlan.getWidth());
+                    aWidth = (float)bitmapFloorPlan.getWidth();
+                    aHeight = (float)bitmapFloorPlan.getHeight();
+                    aspecRatio = aHeight / aWidth;
 
                     if(orientacionDispositivoVertical()){
                         bitmapFloorPlan = Bitmap.createScaledBitmap(bitmapFloorPlan,ivImagen.getWidth(),(int)(ivImagen.getWidth()*aspecRatio),true);
-
+                        //System.out.println("****bmap width2" +  bitmapFloorPlan.getWidth());
+                        sWidth = (float)bitmapFloorPlan.getWidth()/aWidth;
                     }else{
                         bitmapFloorPlan = Bitmap.createScaledBitmap(bitmapFloorPlan,(int)(ivImagen.getHeight()/aspecRatio),(ivImagen.getHeight()),true);
+                        sHeight = (float)bitmapFloorPlan.getHeight()/aHeight;
                     }
                     //bitmapFloorPlan = Bitmap.createScaledBitmap(bitmapFloorPlan,(int)ivImagen.getWidth(),(int)(ivImagen.getWidth()*aspecRatio),true);
                     //Drawable d = ivImagen.getDrawable();
                     // TODO: check that d isn't null
 
-                    imageRectF = new RectF(0, 0, bitmapFloorPlan.getWidth(), bitmapFloorPlan.getHeight());
+                    //imageRectF = new RectF(0, 0, bitmapFloorPlan.getWidth(), bitmapFloorPlan.getHeight());
                     //viewRectF = new RectF(0, 0, ivImagen.getWidth(), ivImagen.getHeight());
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        descargab1 = bitmapFloorPlan;
-                        floorPlan(descargab1);
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            descargab1 = bitmapFloorPlan;
+                            floorPlan(descargab1);
                             //ivImagen.setImageBitmap(bitmapFloorPlan);
-                    }
-                });
+                        }
+                    });
                 } catch (Exception e) {
                     handler.post(new Runnable() {
                         @Override
@@ -634,7 +670,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             Toast.makeText(getApplicationContext(), "Error ", Toast.LENGTH_SHORT).show();
                         }
                     });
-                 }
+                }
             }
         };
         networkThread.start();
@@ -650,6 +686,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
                     conn.connect();
                     bitMapBackground = BitmapFactory.decodeStream(conn.getInputStream());
+                    bitMapBackground = Bitmap.createScaledBitmap(bitMapBackground, descargab1.getWidth(), descargab1.getHeight(), true);
                     runOnUiThread(new Runnable() {
                         public void run() {
                             descargab2 = bitMapBackground;
@@ -680,6 +717,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
                     conn.connect();
                     bitMapActivity = BitmapFactory.decodeStream(conn.getInputStream());
+                    bitMapActivity = Bitmap.createScaledBitmap(bitMapActivity, descargab1.getWidth(), descargab1.getHeight(), true);
                     runOnUiThread(new Runnable() {
                         public void run() {
                             descargab3 = bitMapActivity;
@@ -714,6 +752,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //canvas.drawBitmap(bitMapBackground, new Matrix(),p);
 
         ivImagen.setImageBitmap(bM);
+
         //ivImagen.setImageMatrix(matrix);
 
         //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
@@ -721,32 +760,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void floorPlanAndBackground() {
-        Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
-        Canvas canvas = new Canvas();
+        Bitmap bM = Bitmap.createBitmap(descargab1.getWidth(),descargab1.getHeight(),descargab1.getConfig());
+        Canvas canvas = new Canvas(bM);
         //canvas.restore();
-        canvas.setBitmap(bM);
+        //canvas.setBitmap(bM);
         Paint p = new Paint();
         p.setAlpha(229);
         canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
         canvas.drawBitmap(bitMapBackground, new Matrix(),p);
         ivImagen.setImageBitmap(bM);
+        //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
     }
 
     public void floorPlanAndBackgroundAndActivity() {
-        Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
-        Canvas canvas = new Canvas();
-        canvas.setBitmap(bM);
+        Bitmap bM = Bitmap.createBitmap(descargab1.getWidth(),descargab1.getHeight(),descargab1.getConfig());
+        Canvas canvas = new Canvas(bM);
+        //canvas.restore();
+        //canvas.setBitmap(bM);
         Paint p = new Paint();
         p.setAlpha(178);
         canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
         canvas.drawBitmap(bitMapBackground, new Matrix(),p);
         canvas.drawBitmap(bitMapActivity, new Matrix(),p);
         ivImagen.setImageBitmap(bM);
+        // canvasGeneral = canvas;
+        //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
+
     }
 
     private void floorPlanAndBackgroundAndActivityPoligon() {
         Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
         Canvas canvas = new Canvas();
+        //canvas.restore();
         canvas.setBitmap(bM);
         Paint p = new Paint();
         p.setAlpha(178);
@@ -755,18 +800,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         canvas.drawBitmap(bitMapActivity, new Matrix(),p);
         ivImagen.setImageBitmap(bM);
 
+        if(orientacionDispositivoVertical()){
+            canvasScaleWidth = sWidth;
+            canvasScaleHeight = sWidth*aspecRatio;
+        }else{
+            canvasScaleHeight = sHeight;
+            canvasScaleWidth = sHeight/aspecRatio;
+        }
+
 
         //canvasScaleWidth = (float)bMapImagen.getWidth()/(float) aWidth;
-       // canvasScaleHeight = canvasScaleWidth*aspecRatio;
-        //canvas.scale(canvasScaleWidth,canvasScaleHeight);
-        System.out.println("****imview width" + ivImagen.getWidth() + "bitmap width" + bM.getWidth());
+        // canvasScaleHeight = canvasScaleWidth*aspecRatio;
+        canvas.scale(canvasScaleWidth,canvasScaleHeight);
+        System.out.println("****canvas width" + canvas.getMaximumBitmapWidth() + "canvas density" + canvas.getDensity() + "bitmap width" + bM.getWidth());
         // canvasGeneral = canvas;
         //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
         pintarPoligonos(canvas);
-        canvasScaleWidth = (float)ivImagen.getWidth()/(float)canvas.getWidth();
+        //canvasScaleWidth = (float)ivImagen.getWidth()/(float)canvas.getWidth();
 
-        canvasScaleHeight = canvasScaleWidth*aspecRatio;
-        canvas.scale(canvasScaleWidth,canvasScaleHeight);
+        //canvasScaleHeight = canvasScaleWidth*aspecRatio;
+        //canvas.scale(canvasScaleWidth,canvasScaleHeight);
     }
     private void floorPlanAndBackgroundAndActivityFlechas() {
         Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
@@ -782,6 +835,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // canvasGeneral = canvas;
         //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
         //pintarPoligonos(canvas);
+        if(orientacionDispositivoVertical()){
+            canvasScaleWidth = sWidth;
+            canvasScaleHeight = sWidth*aspecRatio;
+        }else{
+            canvasScaleHeight = sHeight;
+            canvasScaleWidth = sHeight/aspecRatio;
+        }
+        //canvasScaleWidth = (float)bMapImagen.getWidth()/(float) aWidth;
+        // canvasScaleHeight = canvasScaleWidth*aspecRatio;
+        canvas.scale(canvasScaleWidth,canvasScaleHeight);
         pintarUAs(canvas);
 
     }
@@ -793,7 +856,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //float canvasScaleHeight = (float)displayMetrics.heightPixels/(float) bMapPlano.getHeight();
-        canvas.scale(canvasScaleWidth,canvasScaleHeight);
+        //canvas.scale(canvasScaleWidth,canvasScaleHeight);
         Paint pZona = new Paint();
         pZona.setColor(Color.CYAN);
         pZona.setStrokeWidth(5);
