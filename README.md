@@ -4,7 +4,7 @@
 
 ##Manual de instalación APK:
 
-Primero descargar la aplicación APK desde [aqui](https://www.dropbox.com/s/tkd0aassg84257h/Cubelizer%201.0.2.apk?dl=0)
+Primero descargar la aplicación APK desde [aqui](https://www.dropbox.com/s/a01mpyzoq4xwifu/Cubelizer.apk?dl=0)
 
 ####***Habilitar "orígenes desconocidos", paso a paso***
 
