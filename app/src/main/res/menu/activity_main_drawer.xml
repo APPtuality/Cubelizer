@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+   <!-- <item android:title="@string/Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_login_orange"
+                android:title="@string/UserAcount"/>
+        </menu>
+    </item>-->
     <item android:title="@string/Activity">
 
         <menu>
@@ -11,41 +18,29 @@
                 android:title="@string/Background" />
             <item
                 android:id="@+id/nav_foto"
-                android:icon="@drawable/ic_photo_dark"
-                android:title="@string/photo"
+                android:icon="@drawable/ic_walk_dark"
+                android:title="@string/Activity"
                 />
             <item
-                android:id="@+id/nav_activity"
-                android:icon="@drawable/ic_walk_dark"
-                android:title="@string/Activity" />
-            <item
-                android:id="@+id/nav_zone"
-                android:icon="@drawable/ic_grid_dark"
-                android:title="@string/grid" />
-            <item
-                android:id="@+id/nav_todo"
+                android:id="@+id/nav_calor"
                 android:icon="@drawable/ic_arrows_dark"
                 android:title="@string/Flow" />
+            <item
+                android:id="@+id/nav_todo"
+                android:icon="@drawable/ic_filled_dark"
+                android:title="@string/All" />
            <!--item
                 android:id="@+id/nav_calendar"
                 android:icon="@drawable/ic_calendar_orange"
                 android:title="@string/Calendar" />-->
-
-
-        </menu>
-    </item>
-    <item android:title="@string/Settings">
-        <menu>
-            <item
-                android:id="@+id/nav_login"
-                android:icon="@drawable/ic_login_dark"
-                android:title="@string/UserAcount"/>
             <item
                 android:id="@+id/nav_salir"
                 android:icon="@drawable/ic_exit_dark"
                 android:title="@string/exit" />
+
         </menu>
     </item>
+
     <item android:title="@string/Comunicate">
         <menu>
             <item

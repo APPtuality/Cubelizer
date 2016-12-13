@@ -31,7 +31,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     testCompile 'junit:junit:4.12'
-   // compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.jakewharton:butterknife:6.1.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile 'com.google.code.gson:gson:2.3'
@@ -41,5 +41,6 @@ dependencies {
     compile 'net.danlew:android.joda:2.9.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.github.chrisbanes:PhotoView:1.2.6'
-
+    compile files('libs/picasso-2.5.2.jar')
+    compile files('libs/okhttp-3.4.2.jar')
 }
