@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.app.apptuality.talentum.cubelizer.cubelizer.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="523dp" />
+
+
+    <include layout="@layout/app_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/fab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="59dp"
+        android:layout_height="65dp"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_floor_orange"
+        app:layout_behavior=".Scrolling_Floating_Action_Button.FAB_Float_on_Scroll"
+        android:layout_gravity="center_vertical|right"
+        app:elevation="19dp"
+        app:layout_anchorGravity="center_vertical|right" />
+
+</android.support.design.widget.CoordinatorLayout>
