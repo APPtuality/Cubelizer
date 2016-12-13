@@ -8,7 +8,8 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.app.apptuality.talentum.cubelizer.cubelizer.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    >
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -20,8 +21,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/ivImagen"
-            android:adjustViewBounds="false" />
+            android:id="@+id/ivImagen" />
 <!--
         <com.app.apptuality.talentum.cubelizer.cubelizer.persistence.PinchZoomImageView
             android:visibility="invisible"
@@ -45,7 +45,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/datePicker"
-            android:layout_above="@+id/pinchZoomImageView"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="29dp"
             android:visibility="invisible"/>

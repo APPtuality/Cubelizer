@@ -6,9 +6,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,11 +27,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.CoordinatorLayout;
@@ -42,14 +49,17 @@ import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Affluence;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Calendar;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Connection;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.JsonUAs;
-import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.PinchZoomImageView;
+import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Pintura;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Polygon;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.Recycler_View_Adapter;
 import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.TratamientoPolygon;
 
+import org.joda.time.DateTime;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -57,6 +67,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ArrayList<Polygon> aPolygons;
+    public static int[][] listaUasFlow_a;
 
     //private String imageHttpAddress = "";
     /*Elementos del layout content_main*/
@@ -70,6 +81,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private float canvasScale;
     private Display display;
     private Point size;
+    private float dWidth;
+    float canvasScaleWidth;
+    float canvasScaleHeight;
+    float aspecRatio;
+    RectF imageRectF;
+    RectF viewRectF;
+    Pintura pintura;
+    Canvas canvasGeneral;
+
+
+
+
+    private Bitmap descargab1;
+    private Bitmap descargab2;
+    private Bitmap descargab3;
     //float scale =1f;
     //PinchZoomImageView mPinchZoomImageView;
 
@@ -107,6 +133,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        /*Date date = new Date();
+        int year = date.getYear() + 1900;
+        int month = date.getMonth() + 1;
+        diaPulsado = year + "-" + month + "-" + date.getDate();
+        */
+
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
@@ -114,26 +147,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             password = (String)extras.get("password");
         }
         nodata = BitmapFactory.decodeResource(getResources(), R.drawable.nodata);
+
+
         ivImagen = (ImageView)findViewById(R.id.ivImagen);
+
         new ConnectionMap().execute();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        display = getWindowManager().getDefaultDisplay();
+
+        if(orientacionDispositivoVertical()){
+            dWidth = (float)displayMetrics.widthPixels;
+
+        }else{
+            dWidth = (float)displayMetrics.heightPixels;
+        }
+
 
 
         /*TRATAMIENTO DEL CALENDARIO*/
         dia = (DatePicker) findViewById(R.id.datePicker);
         calendar = (Calendar) findViewById(R.id.listener_calendar);
+        //diaPulsado = "2016-09-10";
         calendar.setDayViewOnClickListener(new Calendar.DayViewOnClickListener() {
             @Override
             public String onDaySelected(int dia) {
                 View parentLayout = findViewById(android.R.id.content);
-                diaPulsado = String.valueOf(dia);//.getYear() + "-" + dia.getMonth() + "-" + day);
-
+                diaPulsado = String.valueOf(dia);//.getYear() + "-" + datepickerDia.getMonth() + "-" + day);
+                Log.e("ListenerMAin","Estoy en daySelected");
+                Log.e("ListenerMAin",diaPulsado);
                 Snackbar.make(parentLayout, "Seleted Day: " + diaPulsado, Snackbar.LENGTH_SHORT).show();
-                diaPulsado = "2016-09-10";
+                diaPulsado = calendar.fechaSelect;
+                new ConnectionBackground().execute();
+                new ConnectionActivity().execute();
+                Log.e("DiaCompletoPulsado",diaPulsado);
+                // "2016-09-10";
                 //2016-09-10
                 //2016-11-25
                 //2016-01-10
                 return diaPulsado;
             }
+
         });
 
         /*MENU HAMBURGUESA*/
@@ -153,6 +207,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         photoView.update();
     }
 
+    public boolean orientacionDispositivoVertical() {
+
+        int rotacion = display.getRotation();
+
+        if (rotacion== Surface.ROTATION_0 || rotacion == Surface.ROTATION_180) {
+
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    public void checkFeatures() {
+        DateTime today = new DateTime();
+        DateTime.Property day = today.dayOfMonth();
+        DateTime.Property month = today.monthOfYear();
+        DateTime.Property year = today.year();
+        System.out.println("day: " + day.getAsShortText());
+        System.out.println("mes: " + month.getAsShortText());
+        System.out.println("año: " + year.getAsShortText());
+        //System.out.println("Mes: " + month.getAsText());
+        //System.out.println("Mes: " + month.getAsText(Locale.ENGLISH));
+
+        DateTime.Property week = today.weekOfWeekyear();
+        System.out.println("Semana: " + week.getAsText());
+    }
     private void floatingButton() {
         //Enlazamos las animaciones de los botones flotantes
         show_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab1_show);
@@ -178,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     expandFAB();
                     //Canvas canvas = new Canvas();
                     //PinchZoomImageView pinchZoomImageView = new PinchZoomImageView(MainActivity.this);
-                    new ConnectionUAsData().execute();
+                    floorPlanAndBackground();
                     //pinchZoomImageView.draw(canvas);
                     //new ConnectionUAs().execute();
                     //new ConnectionBackground().execute();
@@ -187,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else {
                     //Close FAB menu
                     hideFAB();
+                    floorPlanAndBackground();
                     FAB_Status = false;
                 }
             }
@@ -196,23 +279,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //planoActividad();
+                floorPlanAndBackgroundAndActivity();
+
             }
         });
 
-        /*Dándole funcionalidad al botón flotante -> Plano + Actividad*/
+        /*Dándole funcionalidad al botón flotante -> Plano + Imagen + Actividad*/
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mostrarFlow();
+                new ConnectionUAs().execute();
+                //floorPlanAndBackgroundAndActivityPoligon();
+
+                //floorPlanAndBackgroundAndActivity();
             }
         });
 
-        /*Dándole funcionalidad al botón flotante -> MostrarTodo*/
+        /*Dándole funcionalidad al botón flotante -> MostrarTodo --> Plano + Imagen + Actividad + Poligonos*/
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mostrarFlow();
+
+                new ConnectionUAsData().execute();
+                //floorPlanAndBackgroundAndActivityFlechas();
             }
         });
 
@@ -238,6 +327,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
+
+
 
     private void expandFAB() {
         //Floating Action Button 1
@@ -324,11 +416,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_plano) {
             //Floorplan + background image
-            new ConnectionBackground().execute();
+            floorPlanAndBackground();
 
         } else if (id == R.id.nav_foto) {
             //Floorplan + background image + activity map
-            new ConnectionActivity().execute();
+            floorPlanAndBackgroundAndActivity();
 
         } else if (id == R.id.nav_calor) {
             //Floorplan + background image + UA polygons + UA flows
@@ -336,12 +428,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_todo) {
             //Floorplan + background image + activity map + UA polygons + UA flows
-
-        } else if (id == R.id.nav_calendar) {
+        }else if(id == R.id.nav_salir){
+            finish();
+       /* } else if (id == R.id.nav_calendar) {
             //Calendario
             dia.setVisibility(View.VISIBLE);
 
-
+       */
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -459,18 +552,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         protected Void doInBackground(Void... params) {
             //Log.d("Salto", connection.getUas());
             uas = connection.getUas();
-            Log.d("uasData", uasData);
+            Log.d("uas", uas);
             JsonUAs jsonUAs = new JsonUAs();
-            jsonUAs.devolucionArray(uasData);
+            jsonUAs.devolucionArray(uas);
             aPolygons =  jsonUAs.getPolygons();
-
+            System.out.println("1er "+ aPolygons);
             Log.d("movida ==>",aPolygons.toString() );
             return null;
         }
         @Override
         protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            //DescargarActivity(urlActivity);
+            floorPlanAndBackgroundAndActivityPoligon();
         }
     }
 
@@ -489,17 +582,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             uasData = connection.getDayUasData(diaPulsado);
             Affluence affluence = new Affluence();
             affluence.getArrayFlow(uasData);
+            listaUasFlow_a = affluence.getListaUasFlow_a();
             return null;
         }
         @Override
         protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            //DescargarActivity(urlActivity);
-            if(uasData != ""){
-                //DescargarBackground(uasData);
-            }else{
-                ivImagen.setImageBitmap(nodata);
-            }
+
+            floorPlanAndBackgroundAndActivityFlechas();
         }
     }
 
@@ -513,10 +603,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 imageUrl = new URL(imageHttpAddress);
                 HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
                 conn.connect();
+
                 bitmapFloorPlan = BitmapFactory.decodeStream(conn.getInputStream());
+
+                    aspecRatio = (float) bitmapFloorPlan.getHeight() / (float) bitmapFloorPlan.getWidth();
+
+                    if(orientacionDispositivoVertical()){
+                        bitmapFloorPlan = Bitmap.createScaledBitmap(bitmapFloorPlan,ivImagen.getWidth(),(int)(ivImagen.getWidth()*aspecRatio),true);
+
+                    }else{
+                        bitmapFloorPlan = Bitmap.createScaledBitmap(bitmapFloorPlan,(int)(ivImagen.getHeight()/aspecRatio),(ivImagen.getHeight()),true);
+                    }
+                    //bitmapFloorPlan = Bitmap.createScaledBitmap(bitmapFloorPlan,(int)ivImagen.getWidth(),(int)(ivImagen.getWidth()*aspecRatio),true);
+                    //Drawable d = ivImagen.getDrawable();
+                    // TODO: check that d isn't null
+
+                    imageRectF = new RectF(0, 0, bitmapFloorPlan.getWidth(), bitmapFloorPlan.getHeight());
+                    //viewRectF = new RectF(0, 0, ivImagen.getWidth(), ivImagen.getHeight());
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        FloorPlan(bitmapFloorPlan);
+                        descargab1 = bitmapFloorPlan;
+                        floorPlan(descargab1);
                             //ivImagen.setImageBitmap(bitmapFloorPlan);
                     }
                 });
@@ -545,7 +652,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     bitMapBackground = BitmapFactory.decodeStream(conn.getInputStream());
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            FloorPlanAndBackground(bitMapBackground);
+                            descargab2 = bitMapBackground;
+                            //FloorPlanAndBackground(bitMapBackground);
                             //ivImagen.setImageBitmap(bitmapFloorPlan);
                         }
                     });
@@ -574,7 +682,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     bitMapActivity = BitmapFactory.decodeStream(conn.getInputStream());
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            FloorPlanAndBackgroundAndActivity(bitMapActivity);
+                            descargab3 = bitMapActivity;
+                            //FloorPlanAndBackgroundAndActivity(bitMapActivity);
                             //ivImagen.setImageBitmap(bitmapFloorPlan);
                         }
                     });
@@ -591,44 +700,190 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         networkThread.start();
     }
 
-    public void FloorPlan(Bitmap bitmapFloorPlan){
+    public void floorPlan(Bitmap bitmapFloorPlan){
         Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
         Canvas canvas = new Canvas(bM);
         //Paint p = new Paint();
         //p.setAlpha(229);
+
+        //Matrix matrix = new Matrix();
+
+        //matrix.setRectToRect(imageRectF, imageRectF, Matrix.ScaleToFit.CENTER);
+
         canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
         //canvas.drawBitmap(bitMapBackground, new Matrix(),p);
+
         ivImagen.setImageBitmap(bM);
+        //ivImagen.setImageMatrix(matrix);
+
         //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
         //mPinchZoomImageView.setImageBitmap(bMapPlano);
     }
 
-    public void FloorPlanAndBackground(Bitmap bitMapBackgroun) {
-        bitMapBackground = bitMapBackgroun;
-        Bitmap bM = Bitmap.createBitmap(bitMapBackground.getWidth(),bitMapBackground.getHeight(),bitMapBackground.getConfig());
+    public void floorPlanAndBackground() {
+        Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
         Canvas canvas = new Canvas();
+        //canvas.restore();
         canvas.setBitmap(bM);
         Paint p = new Paint();
         p.setAlpha(229);
-        //canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
-        canvas.drawBitmap(bitMapBackground, new Matrix(),null);
-        ivImagen.setImageBitmap(bM);
-        //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
-    }
-
-    public void FloorPlanAndBackgroundAndActivity(Bitmap bitMapActivity) {
-        Bitmap bM = Bitmap.createBitmap(bitMapActivity.getWidth(),bitMapActivity.getHeight(),bitMapActivity.getConfig());
-        Canvas canvas = new Canvas();
-        canvas.setBitmap(bM);
-        Paint p = new Paint();
-        p.setAlpha(229);
-        //canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
-        //canvas.drawBitmap(bitMapBackground, new Matrix(),null);
-        canvas.drawBitmap(bitMapActivity, new Matrix(),null);
+        canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
         canvas.drawBitmap(bitMapBackground, new Matrix(),p);
         ivImagen.setImageBitmap(bM);
-        //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
     }
+
+    public void floorPlanAndBackgroundAndActivity() {
+        Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
+        Canvas canvas = new Canvas();
+        canvas.setBitmap(bM);
+        Paint p = new Paint();
+        p.setAlpha(178);
+        canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
+        canvas.drawBitmap(bitMapBackground, new Matrix(),p);
+        canvas.drawBitmap(bitMapActivity, new Matrix(),p);
+        ivImagen.setImageBitmap(bM);
+    }
+
+    private void floorPlanAndBackgroundAndActivityPoligon() {
+        Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
+        Canvas canvas = new Canvas();
+        canvas.setBitmap(bM);
+        Paint p = new Paint();
+        p.setAlpha(178);
+        canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
+        canvas.drawBitmap(bitMapBackground, new Matrix(),p);
+        canvas.drawBitmap(bitMapActivity, new Matrix(),p);
+        ivImagen.setImageBitmap(bM);
+
+
+        //canvasScaleWidth = (float)bMapImagen.getWidth()/(float) aWidth;
+       // canvasScaleHeight = canvasScaleWidth*aspecRatio;
+        //canvas.scale(canvasScaleWidth,canvasScaleHeight);
+        System.out.println("****imview width" + ivImagen.getWidth() + "bitmap width" + bM.getWidth());
+        // canvasGeneral = canvas;
+        //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
+        pintarPoligonos(canvas);
+        canvasScaleWidth = (float)ivImagen.getWidth()/(float)canvas.getWidth();
+
+        canvasScaleHeight = canvasScaleWidth*aspecRatio;
+        canvas.scale(canvasScaleWidth,canvasScaleHeight);
+    }
+    private void floorPlanAndBackgroundAndActivityFlechas() {
+        Bitmap bM = Bitmap.createBitmap(bitmapFloorPlan.getWidth(),bitmapFloorPlan.getHeight(),bitmapFloorPlan.getConfig());
+        Canvas canvas = new Canvas();
+        //canvas.restore();
+        canvas.setBitmap(bM);
+        Paint p = new Paint();
+        p.setAlpha(178);
+        canvas.drawBitmap(bitmapFloorPlan, new Matrix(), null);
+        canvas.drawBitmap(bitMapBackground, new Matrix(),p);
+        canvas.drawBitmap(bitMapActivity, new Matrix(),p);
+        ivImagen.setImageBitmap(bM);
+        // canvasGeneral = canvas;
+        //tvDimensiones.setText(Integer.toString(bitmapFloorPlan.getWidth()) + " x " + Integer.toString(bitmapFloorPlan.getHeight()));
+        //pintarPoligonos(canvas);
+        pintarUAs(canvas);
+
+    }
+    public void pintarPoligonos(Canvas canvas){
+        //canvas.restore();
+
+
+        //float aspecRatio = (float) bMapPlano.getHeight() / (float) bMapPlano.getWidth();
+
+
+        //float canvasScaleHeight = (float)displayMetrics.heightPixels/(float) bMapPlano.getHeight();
+        canvas.scale(canvasScaleWidth,canvasScaleHeight);
+        Paint pZona = new Paint();
+        pZona.setColor(Color.CYAN);
+        pZona.setStrokeWidth(5);
+        pZona.setStyle(Paint.Style.STROKE);
+
+        Path pathPolygons = new Path();
+/*
+        TratamientoPolygon tratamientoPolygon = new TratamientoPolygon();
+
+      String sector1 = "Name: Entrance Polygon: [[0,0],[559,0],[559,41],[346,188],[209,198],[97,203],[0,145]]";
+        tratamientoPolygon.convertirAPolygon(sector1);
+        String sector2 = "Name: Left Polygon: [[0,145],[97,203],[209,198],[224,332],[234,434],[0,461]]";
+        tratamientoPolygon.convertirAPolygon(sector2);
+        String sector3 = "Name: Upper-right Polygon: [[209,198],[346,188],[559,41],[559,237],[378,304],[224,332]]";
+        tratamientoPolygon.convertirAPolygon(sector3);
+        String sector4 = "Lower-right  Polygon: [[224,332],[378,304],[559,237],[559,464],[309,426],[234,434]]";
+        tratamientoPolygon.convertirAPolygon(sector4);
+        String sector5 = "Name: Chairs Polygon: [[0,461],[234,434],[309,426],[559,464],[559,559],[0,559]]";
+        tratamientoPolygon.convertirAPolygon(sector5);
+
+        ArrayList<Polygon> aPolygons = tratamientoPolygon.getPolygons();
+*/
+        dibujarPoligonos (aPolygons, pathPolygons, canvas, pZona);
+        System.out.println("2do "+ aPolygons);
+
+
+    }
+    public void dibujarPoligonos(ArrayList<Polygon> aPolygons, Path pathPolygons, Canvas canvas, Paint pZona){
+        for (Polygon polygon : aPolygons){
+            int i=0;
+            ArrayList<Point> arrayPolygon = (ArrayList<Point>) polygon.getPolygon();
+            for(Point punto : arrayPolygon){
+                if(i==0){
+                    pathPolygons.moveTo(punto.x, punto.y);
+                    pathPolygons.lineTo(punto.x, punto.y);
+                    i=i+1;
+                }else{
+                    pathPolygons.lineTo(punto.x, punto.y);
+                }
+            }
+            pathPolygons.lineTo(arrayPolygon.get(0).x, arrayPolygon.get(0).y);
+        }
+        canvas.drawPath(pathPolygons, pZona);
+    }
+
+    public void pintarUAs(Canvas canvas){
+        Paint pZona = new Paint();
+        pZona.setColor(Color.CYAN);
+        pZona.setStrokeWidth(5);
+        pZona.setStyle(Paint.Style.STROKE);
+
+        Path pathPolygons = new Path();
+        dibujarPoligonos (aPolygons, pathPolygons, canvas, pZona);
+
+
+        Paint pCirculoIn = new Paint();
+        pCirculoIn.setStyle(Paint.Style.STROKE);
+        pCirculoIn.setAntiAlias(true);
+        pCirculoIn.setStrokeWidth(3);
+        pCirculoIn.setColor(Color.GREEN);
+
+        Paint pCirculoOut = new Paint();
+        pCirculoOut.setStyle(Paint.Style.FILL);
+        pCirculoOut.setAntiAlias(true);
+        pCirculoOut.setStrokeWidth(3);
+        pCirculoOut.setColor(Color.RED);
+
+        Paint pLineaFlecha = new Paint();
+        pLineaFlecha.setColor(Color.WHITE);
+        pLineaFlecha.setStyle(Paint.Style.STROKE);
+        pLineaFlecha.setAlpha(100);
+
+        Paint pPuntaFlecha = new Paint();
+        pPuntaFlecha.setColor(Color.WHITE);
+        pPuntaFlecha.setStyle(Paint.Style.STROKE);
+        pPuntaFlecha.setAlpha(100);
+
+        Path pathCirculosOut = new Path();
+        Path pathCirculosIn = new Path();
+
+        dibujarCirculos (aPolygons, listaUasFlow_a, pathCirculosOut, pathCirculosIn, canvas, pCirculoIn, pCirculoOut);
+
+        Path pathLineaFlecha = new Path();
+        Path pathPuntaFlecha = new Path();
+
+        dibujarFlechas (aPolygons,listaUasFlow_a,pathLineaFlecha, canvas, pLineaFlecha,pathPuntaFlecha,pPuntaFlecha);
+
+
+    }
+
 
 
 
@@ -673,5 +928,228 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 */
+    public ArrayList<Point> obtenerCentros(ArrayList<Polygon> aPolygons){
+        //con esta funcion obtenemos un array con todos los centros
+        ArrayList<Point> centros = new ArrayList<Point>();
+        int i = 0;
+        //recorremos el array de objetos poligonos para sacar cada polígono
+        for (Polygon polygon : aPolygons){
+            //vertemos en la variable "iVertices" el tamaño del array de puntos de cada polígono
+            int iVertices = polygon.getPolygon().size();
+            //añadimos al array de puntos "centros" el centro de cada polígono
+            //para ello invocamos a la función encontrarCentro pasándole el array de puntos de cada
+            //Polígono y el número total de puntos "iVertices"
+            centros.add(encontrarCentro(polygon.getPolygon(), iVertices));
+            System.out.println("****ARRAY_CENTROS: Polígono " + (i+1) + " = (" + centros.get(i).x + "," + centros.get(i).y + ")");
+            i=i+1;
+        }
+        return centros;
+    }
+
+    public void dibujarCirculos (ArrayList<Polygon> aPolygons, int[][] listaUasFlow_a, Path pathCirculosOut, Path pathCirculosIn, Canvas canvas, Paint pCirculoIn, Paint pCirculoOut){
+        //sacamos el flujo mayor para escalar lo que dibujemos
+        int numeroMayor = flujoMayor(listaUasFlow_a);
+        System.out.println("****FLUJO MAYOR: " + numeroMayor);
+        ArrayList<Point> centros = obtenerCentros(aPolygons);
+        //for (Polygon polygon : aPolygons) {
+        // List<Point> arrayPolygon = polygon.getPolygon();
+        //i representa a "x" (destino)
+        int i = 0;
+        for (int[] flujosZona : listaUasFlow_a) {
+            //k representa a "y" (salida)
+            int k = 0;
+            //si i(x)=0 son los flujos hasta el exterior
+            //hasta el exterior (circulo rojo)
+            for (int flujo : flujosZona) {
+                System.out.println("****ARRAY_FLOW int2: [x]= " + i + "[y]= " + k + ", " + listaUasFlow_a[i][k]);
+                System.out.println("****ARRAY_FLOW int3: [x]= " + i + "[y]= " + k + ", " + flujo);
+                if (i == 0) {
+                    if (flujo != 0) {
+                        pathCirculosOut.addCircle((float)(centros.get(k-1).x), (float)(centros.get(k-1).y), diametroCirculo(numeroMayor, flujo), Path.Direction.CW);
+                        canvas.drawPath(pathCirculosOut, pCirculoOut);
+                        pathCirculosOut.reset();
+                    }
+                    k = k + 1;
+                } else {
+                    //desde el exterior(circulo verde)
+                    if (k == 0) {
+                        if (flujo != 0) {
+                            pathCirculosIn.addCircle((float)(centros.get(i-1).x), (float)(centros.get(i-1).y), diametroCirculo(numeroMayor, flujo), Path.Direction.CW);
+                            canvas.drawPath(pathCirculosIn, pCirculoIn);
+                            pathCirculosIn.reset();
+                        }
+                    }
+                    k = k + 1;
+                }
+            }
+            i = i + 1;
+        }
+        //}
+    }
+
+    // @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void dibujarFlechas (ArrayList<Polygon> aPolygons, int[][] listaUasFlow_a, Path pathLineaFlecha, Canvas canvas, Paint pLineaFlecha, Path pathPuntaFlecha, Paint pPuntaFlecha){
+        //sacamos el flujo mayor para escalar lo que dibujemos
+        Point puntoControl = new Point();
+        int numeroMayor = flujoMayor(listaUasFlow_a);
+        //System.out.println("****FLUJO MAYOR: " + numeroMayor);
+        ArrayList<Point> centros = obtenerCentros(aPolygons);
+        //for (Polygon polygon : aPolygons) {
+        // List<Point> arrayPolygon = polygon.getPolygon();
+        //i representa a "x" (destino)
+        int i = 0;
+
+        for (int[] flujosZona : listaUasFlow_a) {
+            //k representa a "y" (salida)
+            int k = 0;
+            int j = 0;
+            //si i(x)=0 son los flujos hasta el exterior
+            //hasta el exterior (circulo rojo)
+            for (int flujo : flujosZona) {
+                //System.out.println("****ARRAY_FLOW int2: [x]= " + i + "[y]= " + k + ", " + listaUasFlow_a[i][k]);
+                //System.out.println("****ARRAY_FLOW int3: [x]= " + i + "[y]= " + k + ", " + flujo);
+                //si i(x)!=0 son los flujos de zonas
+                if (i != 0) {
+                    //si ii(y)!=0 son los flujos entre zonas
+                    if (k != 0) {
+                        if (flujo != 0) {
+                            pLineaFlecha.setStrokeWidth(grosorFlecha(numeroMayor, flujo));
+                            pathLineaFlecha.moveTo((float)(centros.get(k-1).x), (float)(centros.get(k-1).y));
+                            puntoControl = puntoControl((float)(centros.get(k-1).x),(float)(centros.get(k-1).y),(float)(centros.get(i-1).x),(float)(centros.get(i-1).y));
+                            pathLineaFlecha.quadTo((float)(puntoControl.x), (float)(puntoControl.y),(float)((centros.get(i-1).x)+j), (float)((centros.get(i-1).y)+j));
+                            //pathLineaFlecha.quadTo(((float)((centros.get(k-1).x)+80)), (float)((centros.get(k-1).y)+80),(float)((centros.get(i-1).x)+j), (float)((centros.get(i-1).y)+j));
+                            //pathLineaFlecha.lineTo((float)((centros.get(i-1).x)+0), (float)((centros.get(i-1).y)+0));
+
+                            canvas.drawPath(pathLineaFlecha, pLineaFlecha);
+                            pathLineaFlecha.reset();
+                            //dibujamos punta de flecha
+                            pPuntaFlecha.setStrokeWidth(grosorFlecha(numeroMayor, flujo));
+                            puntaFlecha(pathPuntaFlecha, (float)(puntoControl.x), (float)(puntoControl.y), (float)((centros.get(i-1).x)+j), (float)((centros.get(i-1).y)+j), grosorPuntaFlecha(numeroMayor, flujo));
+                            //puntaFlecha(pathPuntaFlecha, (float)(centros.get(k-1).x), (float)(centros.get(k-1).y), (float)((centros.get(i-1).x)+j), (float)((centros.get(i-1).y)+j), grosorPuntaFlecha(numeroMayor, flujo));
+                            canvas.drawPath(pathPuntaFlecha, pPuntaFlecha);
+                            pathPuntaFlecha.reset();
+                            //j=j+25;
+                            System.out.println("****FLECHA: de Poligono: " + k + " a Poligono: " + i + ", con flujo " + flujo + " y grosor " + grosorFlecha(numeroMayor, flujo));
+                            System.out.println("****PUNTA FLECHA: de Poligono: " + k + " a Poligono: " + i + ", con flujo " + flujo + " y grosor " + grosorFlecha(numeroMayor, flujo));
+                        }
+                    }
+                    k = k + 1;
+                }
+            }
+            i = i + 1;
+        }
+        //}
+    }
+
+
+    public float grosorPuntaFlecha(int numeroMaximo, int flujo){
+        float grosor = 0.f;
+
+        if(flujo != 0){
+            grosor=((flujo*35)/numeroMaximo)+15;
+        }else{
+            grosor=0;
+        }
+
+        //System.out.println(grosor);
+
+        return grosor;
+    }
+
+
+
+    public Point encontrarCentro(ArrayList<Point> puntos, int numeroPuntos){
+        Point off = puntos.get(0);
+        int twicearea = 0;
+        int x = 0;
+        int y = 0;
+        Point p1, p2, centro;
+        int f;
+        for (int i = 0, j= numeroPuntos -1;i<numeroPuntos; j= i++){
+            p1 = puntos.get(i);
+            p2 = puntos.get(j);
+            f = (p1.x - off.x) * (p2.y - off.y) - (p2.x - off.x) * (p1.y -off.y);
+            twicearea += f;
+            x += (p1.x +p2.x - 2 * off.x) * f;
+            y += (p1.y + p2.y -2 * off.y) *f;
+        }
+        f= twicearea *3;
+
+        centro = new Point();
+        centro.x= x/f + off.x;
+        centro.y = y/f + off.y;
+
+        return centro;
+    }
+
+    public float diametroCirculo(int numeroMaximo, int flujo){
+        float grosor = 0.f;
+
+        if(flujo != 0){
+            grosor=((flujo*20)/numeroMaximo)+5;
+        }else{
+            grosor=0;
+        }
+
+        //System.out.println(grosor);
+
+        return grosor;
+
+    }
+
+    public float grosorFlecha(int numeroMaximo, int flujo){
+        float grosor = 0.f;
+
+        if(flujo != 0){
+            grosor=((flujo*17)/numeroMaximo)+3;
+        }else{
+            grosor=0;
+        }
+
+        //System.out.println(grosor);
+
+        return grosor;
+
+    }
+
+
+    public int flujoMayor(int[][]array){
+        int numeroMayor = 0;
+
+        for(int[] a : array) {
+            for (int b : a) {
+                if (b > numeroMayor) {
+                    numeroMayor = b;
+                }
+            }
+        }
+        return numeroMayor;
+    }
+
+
+
+    public void puntaFlecha(Path path, float fromx, float fromy, float tox, float toy, float grosor){
+        int headlen = (int)grosor;   // length of head in pixels
+        double angle = Math.atan2(toy-fromy,tox-fromx);
+        path.moveTo(tox, toy);
+        path.lineTo((float)(tox-headlen* Math.cos(angle+ Math.PI/6)),(float)(toy-headlen* Math.sin(angle+ Math.PI/6)));
+        path.moveTo(tox, toy);
+        path.lineTo((float)(tox-headlen* Math.cos(angle- Math.PI/6)),(float)(toy-headlen* Math.sin(angle- Math.PI/6)));
+    }
+
+    public Point puntoControl(float fromx, float fromy, float tox, float toy){
+        double distancia = Math.hypot(toy-fromy,tox-fromx);
+        double longitud = Math.hypot((distancia/2),(distancia/2));   // length of head in pixels
+        double angle = Math.atan2(toy-fromy,tox-fromx);
+        Point puntoControl = new Point();
+        puntoControl.x = (int)(tox-longitud* Math.cos(angle+ Math.PI/6));
+        puntoControl.y = (int)(toy-longitud* Math.sin(angle+ Math.PI/6));
+        return  puntoControl;
+        //path.moveTo(tox, toy);
+        //path.lineTo((float)(tox-headlen*Math.cos(angle-Math.PI/6)),(float)(toy-headlen*Math.sin(angle-Math.PI/6)));
+    }
+
+
+
 }
 

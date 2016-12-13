@@ -19,7 +19,7 @@ public class JsonUAs {
 
     //String json;
     private static String actualKey = null;
-    private Polygon polygon = new Polygon();
+   // private Polygon polygon = new Polygon();
     private ArrayList<Polygon> polygons = new ArrayList<Polygon>();
 
     public void devolucionArray(String json) {
@@ -116,6 +116,7 @@ public class JsonUAs {
                 aPolygon.add(punto);
             }
         }
+        Polygon polygon = new Polygon();
         polygon.setName(sName);
         //System.out.println("Poligono final: "+ polygon);
         polygon.setPolygon(aPolygon);

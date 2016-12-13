@@ -25,14 +25,9 @@
     <string name="Settings">Settings</string>
     <string name="Comunicate">Communication</string>
     <string name="share">Share</string>
-    <string-array name="languages">
-        <item>English</item>
-        <item>Spanish</item>
-    </string-array>
-    <string-array name="languages_entries">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
+    <string name="exit">Exit</string>
+
+
 
     <!--String recursos en código-->
     <string name="user_login_status">"User login status"</string>

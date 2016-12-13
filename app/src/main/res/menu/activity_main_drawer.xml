@@ -29,10 +29,15 @@
                 android:id="@+id/nav_todo"
                 android:icon="@drawable/ic_filled_orange"
                 android:title="@string/All" />
-            <item
+           <!--item
                 android:id="@+id/nav_calendar"
                 android:icon="@drawable/ic_calendar_orange"
-                android:title="@string/Calendar" />
+                android:title="@string/Calendar" />-->
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/plano_prueba2"
+                android:title="@string/exit" />
+
         </menu>
     </item>
 

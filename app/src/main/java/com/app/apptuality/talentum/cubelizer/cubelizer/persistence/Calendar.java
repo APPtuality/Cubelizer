@@ -6,16 +6,22 @@ import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import com.app.apptuality.talentum.cubelizer.cubelizer.R;
 import net.danlew.android.joda.JodaTimeAndroid;
+
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+
+import java.util.Date;
 
 public class Calendar extends HorizontalScrollView implements View.OnClickListener {
 
@@ -43,6 +49,7 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
     Context mContext;
     LocalDateTime mStartDate;
     LocalDateTime mEndDate;
+    LocalDateTime miSelect;
     int mSelectedDay;
 
     //Colors
@@ -61,9 +68,14 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         mListener = listener;
     }
     public interface DayViewOnClickListener {
+        //public String onDaySelected(Date day);
         public String onDaySelected(int day);
+
     }
 
+    /* MI VARIABLE DEL AÑO */
+    int miYear, miMonth;
+    public static String fechaSelect;
 
     //Day View
     DayView mSelectedDayView;
@@ -104,8 +116,16 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
         //Init Start and End date with current month
         final LocalDateTime currentDateTime = new LocalDateTime();
-        setStartDateWithParts(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMinimumValue().getDayOfMonth());
-        setEndDateWithParts(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMaximumValue().getDayOfMonth());
+        Log.d("CurrentDate",currentDateTime.toString());
+        miYear = currentDateTime.getYear();
+        // int miMonth = currentDateTime.getMonthOfYear();
+        int miDay = currentDateTime.getDayOfMonth();
+
+        Log.d("CurrentDateDAY",String.valueOf(miYear+","+miMonth+","+miDay));
+        setStartDateWithParts(currentDateTime.getYear(), currentDateTime.monthOfYear().withMinimumValue().getMonthOfYear(), currentDateTime.dayOfMonth().withMinimumValue().getDayOfMonth());
+        //setStartDateWithParts(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMinimumValue().getDayOfMonth());
+        setEndDateWithParts(currentDateTime.getYear(),currentDateTime.monthOfYear().withMaximumValue().getMonthOfYear(), currentDateTime.dayOfMonth().withMaximumValue().getDayOfMonth());
+        //setEndDateWithParts(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.dayOfMonth().withMaximumValue().getDayOfMonth());
 
         //Inflate view
         View view = LayoutInflater.from(mContext).inflate(WIDGET_LAYOUT_RES_ID, this, true);
@@ -144,7 +164,15 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         render();
 
         //Set Selection. Default is today.
-        setSelectedDay(currentDateTime.getDayOfMonth(), false, DELAY_SELECTION);
+        setSelectedDay(
+                currentDateTime.getDayOfMonth(),
+                false, DELAY_SELECTION);
+
+       /* setSelectedDay(currentDateTime.getYear(),
+                currentDateTime.getMonthOfYear(),
+                currentDateTime.getDayOfMonth(),
+                false, DELAY_SELECTION);
+*/
     }
 
     /***
@@ -159,13 +187,16 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
     private void setStartDateWithParts(int year, int month, int day) {
         mStartDate = new LocalDateTime(year, month, day, 0, 0, 0);
+        Log.d("StartDate", mStartDate.toString());
+        Log.d("StartDate", mStartDate.toString());
+
     }
 
     private void setEndDateWithParts(int year, int month, int day) {
         mEndDate = new LocalDateTime(year, month, day, 0, 0, 0);
     }
 
-    public void setSelectedDay(final int day, final boolean notifyListeners, long delay) {
+    public void setSelectedDay(final int day,final boolean notifyListeners, long delay) {
         //Post delayed 300 ms at most because of redraw
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -177,13 +208,16 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
                 //Set selected day
                 mSelectedDay = day;
                 selectDay(mSelectedDay);
-
+                // miMonth = month;
                 //Scroll to DayView
                 scrollToDayView(mSelectedDayView);
 
                 //Call listener
                 if(notifyListeners && mListener != null)
                     mListener.onDaySelected(mSelectedDay);
+
+                //   Log.d("listenerDay",String.valueOf( mListener.onDaySelected(mSelectedDay)));
+
             }
         }, delay);
     }
@@ -211,6 +245,9 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         LocalDateTime startDate = mStartDate;
         LocalDateTime endDate = mEndDate;
 
+        String week = startDate.dayOfWeek().getAsText();//.getAsShortText().substring(0,3);
+        Log.i("DayWeek", week);
+
         while (startDate.isBefore(endDate.plusDays(1))) {
 
             //Inflate view
@@ -221,11 +258,15 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
             //Set texts and listener
             dayView.setDayOfWeek(startDate.dayOfWeek().getAsShortText().substring(0,3));
+            //String week = startDate.dayOfWeek().getAsShortText().substring(0,3);
+            //Log.i("DayWeek", week);
             if(!mDisplayDayOfWeek)
                 dayView.hideDayOfWeek();
 
             dayView.setDay(startDate.getDayOfMonth());
             dayView.setMonthShortName(startDate.monthOfYear().getAsShortText().substring(0,3));
+            //MI METODO
+            dayView.setMonthNumero(startDate.monthOfYear().get());
 
             //Hide month if range in same month
             if (!mAlwaysDisplayMonth && startDate.getMonthOfYear() == endDate.getMonthOfYear())
@@ -242,6 +283,13 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
             //Next day
             startDate = startDate.plusDays(1);
+
+
+
+            /* prueba de codigo raro*/
+            //  Log.d("viewGetDay", String.valueOf(dayView.getDay()));
+            //Log.d("viewGetDay", String.valueOf(dayView.getDay()));
+            //dayView.getDay();
         }
 
         //Add right padding
@@ -260,19 +308,96 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         }
     }
 
+/*
+    if(day.isEmpty()) {
+        Date date = new Date();
+        int year = date.getYear() + 1900;
+        int month = date.getMonth() + 1;
+        day = year + "-" + month + "-" + date.getDate();
+
+    } else {
+        day = (String) extras.get("day");
+    }
+    */
+
     private void selectDay(int day) {
         for (int i = 1; i < mDaysContainer.getChildCount() - 1; i++) {
+            //Log.d("Contenedor",String.valueOf(mDaysContainer.getChildCount()));
             DayView dayView = new DayView(mDaysContainer.getChildAt(i));
+            //Log.d("ContenedorDayView",String.valueOf(mDaysContainer.getChildAt(i)));
             if(dayView.getDay() == day) {
 
                 dayView.setTextColor(mSelectedDayTextColor);
                 dayView.setBackgroundColor(mSelectedDayBackgroundColor);
 
+                // mSelectedDayView = dayView;
                 mSelectedDayView = dayView;
 
                 return;
             }
         }
+    }
+
+    public String miSelectionDay(int year, String month, int day) {
+
+        String mes = month;
+        String mesNumero = "";
+        switch (mes){
+            case "Jan":
+                mesNumero = "01";
+                break;
+            case "Feb":
+                mesNumero = "02";
+                break;
+            case "Mar":
+                mesNumero = "03";
+                break;
+            case "Apr":
+                mesNumero = "04";
+                break;
+            case "May":
+                mesNumero = "05";
+                break;
+            case "Jun":
+                mesNumero = "06";
+                break;
+            case "Jul":
+                mesNumero = "07";
+                break;
+            case "Aug":
+                mesNumero = "08";
+                break;
+            case "Sep":
+                mesNumero = "09";
+                break;
+            case "Oct":
+                mesNumero = "10";
+                break;
+            case "Nov":
+                mesNumero = "11";
+                break;
+            case "Dec":
+                mesNumero = "12";
+                break;
+            case "Ene":
+                mesNumero = "01";
+                break;
+            case "Abr":
+                mesNumero = "04";
+                break;
+            case "Ago":
+                mesNumero = "08";
+                break;
+            case "Dic":
+                mesNumero = "12";
+                break;
+        }
+        String sYear = String.format("%04d", year);
+        String sDia = String.format("%02d", day);
+        fechaSelect = String.format(sYear+"-"+mesNumero+"-"+sDia);
+        Log.i("SeleccionDAY", fechaSelect);
+
+        return fechaSelect;
     }
 
     public void scrollToDayView(DayView dayView) {
@@ -291,7 +416,18 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
         //Get selected day and set selection
         int selectedDay = dayView.getDay();
+        String sMonth = dayView.getMonthMy();
+
+        miSelectionDay(miYear,sMonth,selectedDay);
+
+
         setSelectedDay(selectedDay, true, NO_DELAY_SELECTION);
+        // Log.i("setSelectedDay**",String.valueOf(selectedDay)+", "+sMonth);
+
+
+        // miSelectionDay(iYear,iMonth,selectedDay);
+        Log.i("MiSeleccion**",String.valueOf(miYear+","+miMonth+", "+selectedDay));
+        Log.i("MiSeleccionCon mont**",String.valueOf(miMonth));
     }
 
     /**
@@ -340,13 +476,14 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
         render();
 
-        setSelectedDay(mSelectedDay, false, DELAY_SELECTION);
+        //setSelectedDay(mSelectedDay, false, DELAY_SELECTION);
     }
 
     protected static class SavedState extends BaseSavedState {
         int mSelectedDay;
-        String mEndDateString;
+
         String mStartDateString;
+        String mEndDateString;
 
         public SavedState(Parcelable superState) {
             super(superState);
@@ -354,6 +491,7 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
 
         public SavedState(Parcel in) {
             super(in);
+
             mSelectedDay = in.readInt();
             mStartDateString = in.readString();
             mEndDateString = in.readString();
@@ -413,6 +551,8 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         TextView mDayNumber;
         TextView mMonthShortName;
 
+        int numberM;
+
         public DayView(View view) {
             mView = (LinearLayout) view;
 
@@ -424,6 +564,28 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         public int getDay() {
             return Integer.parseInt(mDayNumber.getText().toString());
         }
+
+
+        public String getYearMy() {
+            return mDayOfWeek.getText().toString();
+        }
+
+        public String getMonthMy() {
+
+            String miMes = mMonthShortName.getText().toString();
+
+            return mMonthShortName.getText().toString();
+        }
+        public void setMonthNumero(int monthNumber) {
+            // mMonthShortName.setText(monthNumber);
+            numberM = monthNumber;
+
+            String month = String.format("%02d", monthNumber);
+        }
+
+
+
+
 
         public void setDay(int day) {
             mDay = day;
@@ -441,6 +603,10 @@ public class Calendar extends HorizontalScrollView implements View.OnClickListen
         public void setMonthShortName(String monthShortName) {
             mMonthShortName.setText(monthShortName);
         }
+
+
+
+
 
         public void setBackgroundColor(int color) {
             mView.setBackgroundColor(color);
