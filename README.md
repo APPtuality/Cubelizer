@@ -38,7 +38,7 @@ Si tienes un aparato con ya unos años de antigüedad, que use Android 2.3 o ant
 
 ## License
 
-   Copyright [2016] [APPtuality]
+   Copyright 2016 APPtuality
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
