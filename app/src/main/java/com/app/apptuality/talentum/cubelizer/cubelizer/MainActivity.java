@@ -14,9 +14,11 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -56,6 +58,8 @@ import com.app.apptuality.talentum.cubelizer.cubelizer.persistence.TratamientoPo
 
 import org.joda.time.DateTime;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user = (String)extras.get("user");
             password = (String)extras.get("password");
         }
-        nodata = BitmapFactory.decodeResource(getResources(), R.drawable.nodata);
+       // nodata = BitmapFactory.decodeResource(getResources(), R.drawable.nodata);
 
 
         ivImagen = (ImageView)findViewById(R.id.ivImagen);
@@ -446,13 +450,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else */
         if (id == R.id.nav_plano) {
             //Floorplan + background image
-            floorPlanAndBackground();
+            floorPlan(bitmapFloorPlan);
 
         } else if (id == R.id.nav_foto) {
+            //Floorplan + background image
+            floorPlanAndBackground();
+
+        }else if (id == R.id.nav_activity) {
             //Floorplan + background image + activity map
             floorPlanAndBackgroundAndActivity();
 
-        } else if (id == R.id.nav_calor) {
+        } else if (id == R.id.nav_zone) {
             //Floorplan + background image + UA polygons + UA flows
             new ConnectionUAs().execute();
 
@@ -542,6 +550,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(urlBackground != ""){
                 DescargarBackground(urlBackground);
             }else{
+                nodata = BitmapFactory.decodeResource(getResources(), R.drawable.nodata);
+                nodata = Bitmap.createScaledBitmap(nodata, descargab1.getWidth(), descargab1.getHeight(), true);
                 ivImagen.setImageBitmap(nodata);
             }
 
@@ -953,7 +963,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /*
    TRATAMIENTO DE CAPTURAS DE PANTALLA
     */
-    /*
+
     private void takeScreenshot() {
         Date now = new Date();
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
@@ -990,7 +1000,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.setDataAndType(uri, "image/*");
         startActivity(intent);
     }
-*/
+
     public ArrayList<Point> obtenerCentros(ArrayList<Polygon> aPolygons){
         //con esta funcion obtenemos un array con todos los centros
         ArrayList<Point> centros = new ArrayList<Point>();

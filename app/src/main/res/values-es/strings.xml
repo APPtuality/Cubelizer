@@ -18,6 +18,8 @@
     <string name="Background">Fondo</string>
     <string name="Activity">Actividad</string>
     <string name="Flow">Transito</string>
+    <string name="grid">Zonas</string>
+    <string name="photo">Foto</string>
     <string name="All">Todas las capas</string>
     <string name="Calendar">Calendario</string>
     <string name="Languages">Idiomas</string>
