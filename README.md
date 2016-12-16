@@ -4,7 +4,7 @@
 
 ##Manual de instalación APK:
 
-Primero descargar la aplicación APK desde [aqui](https://drive.google.com/file/d/0B0rCRi3zLVWEUmhfOHJLNHV6LUk/view?usp=sharing)
+Primero descargar la aplicación APK desde [aqui](https://docs.google.com/uc?export=download&id=0B3bq4u19-waOTFV4UWRjN0swUVk)
 
 ####***Habilitar "orígenes desconocidos", paso a paso***
 
